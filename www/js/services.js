@@ -1,5 +1,24 @@
 angular.module('starter.services', [])
 
+.factory('UserSession', function($resource) {
+  return $resource('http://halfway-db.herokuapp.com/v1/login');
+})
+
+.factory('CurrentUser', function() {
+  var user = {
+    id: window.localStorage['userId'],
+    username: window.localStorage['userName'],
+    email: window.localStorage['userEmail'],
+    access_token: window.localStorage['userAccessToken'],
+  }
+
+  return {
+    user: function() {
+      return user;
+    },
+  };
+})
+
 .factory('Chats', function() {
   // Might use a resource here that returns a JSON array
 
