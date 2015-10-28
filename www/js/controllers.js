@@ -15,7 +15,7 @@ angular.module('starter.controllers', [])
     $ionicHistory.clearCache();
     $ionicHistory.clearHistory();
     $ionicLoading.hide();
-    $location.path('/login');
+    $location.path('/entry');
   }
 })
 
@@ -64,4 +64,29 @@ angular.module('starter.controllers', [])
       }
     );
   }
-});
+})
+
+.controller ('SignupCtrl', function(
+  $scope,
+  $location,
+  UserSession,
+  $ionicPopup,
+  $rootScope,
+  $ionicLoading
+) {
+  $scope.signup = function() {
+
+  }
+})
+
+.controller ('EntryCtrl', function(
+  $scope,
+  $location
+) {
+  $scope.showLogin = function() {
+    $location.path('/login');
+  }
+  $scope.showSignup = function() {
+    $location.path('/signup');
+  }
+})
