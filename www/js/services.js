@@ -1,4 +1,4 @@
-angular.module('starter.services', [])
+angular.module('starter.services', ['ionic', 'ngResource'])
 
 .factory('UserSession', function($resource) {
   return $resource('http://halfway-db.herokuapp.com/v1/login');
@@ -16,7 +16,23 @@ angular.module('starter.services', [])
     user: function() {
       return user;
     },
+    id: function() {
+      return user.id;
+    }
   };
+})
+
+.factory('Events', function($resource) {
+  return $resource(
+    'http://halfway-db.herokuapp.com/v1/users/:user_id/events',
+    { user_id: window.localStorage['userId'] },
+    {
+      query: {
+        method: 'GET',
+        headers: { 'Authorization': window.localStorage['userAccessToken'] }
+      }
+    }
+  );
 })
 
 .factory('Chats', function() {

@@ -1,22 +1,26 @@
 angular.module('starter.controllers', [])
 
-.controller('ProfileCtrl', function($scope, CurrentUser) {
+.controller('ProfileCtrl', function(
+  $scope,
+  CurrentUser,
+  $ionicLoading,
+  $ionicHistory,
+  $location
+) {
   $scope.current_user = CurrentUser.user()
+
+  $scope.logout = function() {
+    $ionicLoading.show();
+    window.localStorage.clear();
+    $ionicHistory.clearCache();
+    $ionicHistory.clearHistory();
+    $ionicLoading.hide();
+    $location.path('/login');
+  }
 })
 
-.controller('EventsCtrl', function($scope, Chats) {
-  // With the new view caching in Ionic, Controllers are only called
-  // when they are recreated or on app start, instead of every page change.
-  // To listen for when this page is active (for example, to refresh data),
-  // listen for the $ionicView.enter event:
-  //
-  //$scope.$on('$ionicView.enter', function(e) {
-  //});
-
-  $scope.chats = Chats.all();
-  $scope.remove = function(chat) {
-    Chats.remove(chat);
-  };
+.controller('EventsCtrl', function($scope, Events, CurrentUser) {
+  $scope.events = Events.query({ user_id: CurrentUser.id() })
 })
 
 .controller('FriendsCtrl', function($scope) {
@@ -25,22 +29,30 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('LoginCtrl', function($scope, $location, UserSession, $ionicPopup, $rootScope) {
+.controller('LoginCtrl', function(
+  $scope,
+  $location,
+  UserSession,
+  $ionicPopup,
+  $rootScope,
+  $ionicLoading
+) {
   $scope.data = {};
 
   $scope.login = function() {
+    $ionicLoading.show();
     var user_session = new UserSession({
       username: $scope.data.username,
       password: $scope.data.password,
     });
     user_session.$save(
       function(data) {
-        window.localStorage['userId'] = data.id
+        window.localStorage['userId'] = data.user_id
         window.localStorage['userName'] = data.username
         window.localStorage['userEmail'] = data.email
         window.localStorage['userAccessToken'] = data.access_token
-        $location.path('/tab/profile');
-        console.log($location.path());
+        $location.path('/tab/events');
+        $ionicLoading.hide();
       },
       function(err) {
         var error = err['data']['error'] || err.data.join('. ')
@@ -48,6 +60,7 @@ angular.module('starter.controllers', [])
           title: 'An error occurred',
           template: error
         });
+        $ionicLoading.hide();
       }
     );
   }

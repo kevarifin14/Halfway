@@ -1,8 +1,11 @@
 <ion-view view-title="Profile">
-  <ion-content>
+  <ion-content class="padding">
     <ion-list>
-      {{current_user.username}}
-      {{current_user.id}}
+      <p>{{current_user.username}}</p>
+      <p>{{current_user.email}}</p>
+       <button class="button" ng-click="logout()">
+        Logout
+      </button>
     </ion-list>
   </ion-content>
 </ion-view>
