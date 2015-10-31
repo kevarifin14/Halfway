@@ -5,7 +5,22 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic','ionic.service.core', 'starter.controllers', 'starter.services', 'ngResource'])
+angular.module(
+  'Halfway',
+  [
+    'ionic',
+    'ionic.service.core',
+    'entry_controller',
+    'events_controller',
+    'events_service',
+    'friends_controller',
+    'login_controller',
+    'login_service',
+    'profile_controller',
+    'signup_controller',
+    'signup_service',
+    'ngResource'
+  ])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -37,7 +52,7 @@ angular.module('starter', ['ionic','ionic.service.core', 'starter.controllers', 
     .state('tab', {
     url: '/tab',
     abstract: true,
-    templateUrl: 'views/tabs.html'
+    templateUrl: 'components/shared/tabs.html'
   })
 
   // Each tab has its own nav history stack:
@@ -46,7 +61,7 @@ angular.module('starter', ['ionic','ionic.service.core', 'starter.controllers', 
     url: '/profile',
     views: {
       'tab-profile': {
-        templateUrl: 'views/tab-profile.html',
+        templateUrl: 'components/profile/profile.html',
         controller: 'ProfileCtrl'
       }
     }
@@ -56,7 +71,7 @@ angular.module('starter', ['ionic','ionic.service.core', 'starter.controllers', 
       url: '/events',
       views: {
         'tab-events': {
-          templateUrl: 'views/tab-events.html',
+          templateUrl: 'components/events/events.html',
           controller: 'EventsCtrl'
         }
       }
@@ -66,7 +81,7 @@ angular.module('starter', ['ionic','ionic.service.core', 'starter.controllers', 
     url: '/friends',
     views: {
       'tab-friends': {
-        templateUrl: 'views/tab-friends.html',
+        templateUrl: 'components/friends/friends.html',
         controller: 'FriendsCtrl'
       }
     }
@@ -74,19 +89,19 @@ angular.module('starter', ['ionic','ionic.service.core', 'starter.controllers', 
 
   .state('login', {
     url: '/login',
-    templateUrl: 'views/login.html',
+    templateUrl: 'components/login/login.html',
     controller: 'LoginCtrl'
   })
 
   .state('signup', {
     url: '/signup',
-    templateUrl: 'views/signup.html',
+    templateUrl: 'components/signup/signup.html',
     controller: 'SignupCtrl'
   })
 
   .state('entry', {
     url: '/entry',
-    templateUrl: 'views/entry.html',
+    templateUrl: 'components/entry/entry.html',
     controller: 'EntryCtrl'
   });
 
