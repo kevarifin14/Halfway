@@ -1,0 +1,2 @@
+describe('Events Service', function() {
+});

@@ -18,7 +18,6 @@ angular.module('login_controller', [])
     });
     user_session.$save(
       function(data) {
-        debugger
         window.localStorage['userId'] = data.user_id
         window.localStorage['username'] = data.username
         window.localStorage['userEmail'] = data.email
