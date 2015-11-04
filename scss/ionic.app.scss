@@ -15,9 +15,33 @@ $royal:                           #886aea !default;
 $dark:                            #444 !default;
 */
 
+$light:                           #FAFAFA !default;
+$stable:                          #EEE !default;
+$positive:                        #FAAC58 !default;
+$calm:                            #FAAC58 !default;
+$balanced:                        #4CAF50 !default;
+$energized:                       #FFC107 !default;
+$assertive:                       #F44336 !default;
+$royal:                           #9C27B0 !default;
+$dark:                            #333 !default;
+
+.button-circle {
+  width: 50px !important;
+  height: 50px !important;
+  border-radius: 50% !important;
+}
+
+#entry-buttons {
+  text-align: center;
+}
+
+h1 {
+  text-align: center;
+}
 // The path for our ionicons font files, relative to the built CSS in www/css
-$ionicons-font-path: "../lib/ionic/fonts" !default;
+$ionicons-font-path: "../../lib/ionic/fonts" !default;
 
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
+
 
