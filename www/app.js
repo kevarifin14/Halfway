@@ -14,6 +14,7 @@ angular.module(
     'events_controller',
     'events_service',
     'friends_controller',
+    'friends_service',
     'login_controller',
     'login_service',
     'profile_controller',
@@ -77,12 +78,12 @@ angular.module(
       }
     })
 
-  .state('tab.friends', {
-    url: '/friends',
+  .state('tab.halfway', {
+    url: '/halfway',
     views: {
-      'tab-friends': {
-        templateUrl: 'components/friends/friends.html',
-        controller: 'FriendsCtrl'
+      'tab-halfway': {
+        templateUrl: 'components/halfway/halfway.html',
+        // controller: 'FriendsCtrl'
       }
     }
   })
@@ -106,5 +107,5 @@ angular.module(
   });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/entry');
+  $urlRouterProvider.otherwise('/halfway');
 });
