@@ -27,7 +27,7 @@ angular.module('signup_controller', [])
         window.localStorage['userName'] = data.username
         window.localStorage['userEmail'] = data.email
         window.localStorage['userAccessToken'] = data.access_token
-        $location.path('/tab/events');
+        $location.path('/tab/halfway');
         $ionicLoading.hide();
       },
       function(err) {

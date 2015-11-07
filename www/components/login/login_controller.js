@@ -22,7 +22,7 @@ angular.module('login_controller', [])
         window.localStorage['username'] = data.username
         window.localStorage['userEmail'] = data.email
         window.localStorage['userAccessToken'] = data.access_token
-        $location.path('/tab/events');
+        $location.path('/tab/halfway');
         $ionicLoading.hide();
       },
       function(err) {
