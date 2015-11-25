@@ -1,7 +1,4 @@
 <ion-view view-title="Profile">
-  <ion-content ng-init="initialize()" scroll="false">
-    <div id="map" data-tap-disabled="true"></div>
-  </ion-content>
   <ion-content class="padding" scroll="false">
     <div class="list card">
       <div class="item item-divider">
@@ -16,15 +13,18 @@
         {{ current_user.email }}
       </p>
 
-      <!-- <div class="item item-divider">
+      <div class="item item-divider">
         Friends
       </div>
       <p class="item" ng-repeat="friend in friends.friendships">
         {{ friend.username }}
-      </p> -->
+      </p>
     </div>
     <div class="bar bar-assertive" ng-click="logout()">
       <div class="title">Logout</div>
     </div>
+  </ion-content>
+  <ion-content ng-init="initialize()" scroll="false">
+    <div id="map" data-tap-disabled="true"></div>
   </ion-content>
 </ion-view>

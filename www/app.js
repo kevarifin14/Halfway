@@ -13,14 +13,15 @@ angular.module(
     'entry_controller',
     'events_controller',
     'events_service',
-    'friends_controller',
     'friends_service',
     'login_controller',
     'login_service',
+    'maps_controller',
     'profile_controller',
     'signup_controller',
     'signup_service',
-    'ngResource'
+    'ngResource',
+    'ngCordova'
   ])
 
 .run(function($ionicPlatform) {
@@ -64,6 +65,16 @@ angular.module(
       'tab-profile': {
         templateUrl: 'components/profile/profile.html',
         controller: 'ProfileCtrl'
+      }
+    }
+  })
+
+  .state('tab.maps', {
+    url: '/maps',
+    views: {
+      'tab-maps': {
+        templateUrl: 'components/maps/maps.html',
+        controller: 'MapsCtrl'
       }
     }
   })

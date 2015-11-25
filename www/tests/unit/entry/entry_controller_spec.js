@@ -17,14 +17,14 @@ describe('Entry Controller', function() {
   }));
 
   describe('EntryCtrl.showLogin', function() {
-    it('works', function() {
+    it('displays the login page', function() {
       $scope.showLogin();
       expect($location.path).toHaveBeenCalledWith('/login');
     });
   });
 
-  describe('EntryCtrl.showLogin', function() {
-    it('works', function() {
+  describe('EntryCtrl.showSignup', function() {
+    it('displays the signup page', function() {
       $scope.showSignup();
       expect($location.path).toHaveBeenCalledWith('/signup');
     });

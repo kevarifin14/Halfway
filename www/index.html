@@ -17,13 +17,14 @@
 
     <!-- cordova script (this will be a 404 during development) -->
     <!-- Cordova is bootstrapped by ionic-platform-web-client, uncomment this if you remove ionic-platform-web-client... -->
-    <!-- <script src="cordova.js"></script> -->
+    <script src="lib/ngCordova/dist/ng-cordova.js"></script>
+    <script src="cordova.js"></script>
 
     <!-- your app's js -->
     <script src="app.js"></script>
     <script src="components/entry/entry_controller.js"></script>
+    <script src="components/maps/maps_controller.js"></script>
     <script src="components/events/events_controller.js"></script>
-    <script src="components/friends/friends_controller.js"></script>
     <script src="components/friends/friends_service.js"></script>
     <script src="components/login/login_controller.js"></script>
     <script src="components/profile/profile_controller.js"></script>
@@ -47,5 +48,6 @@
       have templates inline in this html file if you'd like).
     -->
     <ion-nav-view transition="none"></ion-nav-view>
+    <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAs0EEi-HF0Y-Uj7tEoPxYefNktMGeo9dM"></script>
   </body>
 </html>
