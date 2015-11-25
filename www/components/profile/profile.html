@@ -1,7 +1,5 @@
 <ion-view view-title="Profile">
-  <ion-content ng-init="initialize()" scroll="false">
-    <div id="map" data-tap-disabled="true"></div>
-  </ion-content>
+
   <ion-content class="padding" scroll="false">
     <div class="list card">
       <div class="item item-divider">
@@ -26,5 +24,8 @@
     <div class="bar bar-assertive" ng-click="logout()">
       <div class="title">Logout</div>
     </div>
+  </ion-content>
+  <ion-content ng-init="initialize()" scroll="false">
+    <div id="map" data-tap-disabled="true"></div>
   </ion-content>
 </ion-view>

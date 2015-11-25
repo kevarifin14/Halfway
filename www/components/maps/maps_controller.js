@@ -1,6 +1,6 @@
 angular.module('maps_controller', [])
 .controller('MapsCtrl', function($scope, $ionicLoading, $compile) {
-  $scope.initializeMap = function() {
+  $scope.initialize = function() {
     var myLatlng = new google.maps.LatLng(43.07493,-89.381388);
 
     var mapOptions = {
