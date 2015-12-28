@@ -1,8 +1,10 @@
 <ion-view view-title="Events">
   <ion-content class="padding">
-    <div class="list card">
-      <p class="item" ng-repeat="event in events.events">
-        {{ event.description }}
-      </p>
+    <ion-list>
+      <ion-item ng-repeat="event in events.events" ng-click="showDetails(event)">
+        <h2>{{ event.description }}</h2>
+          <p>{{ event.date }}</p>
+      </ion-item>
+    </ion-list>
   </ion-content>
 </ion-view>

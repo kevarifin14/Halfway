@@ -13,6 +13,8 @@ angular.module(
     'entry_controller',
     'events_controller',
     'events_service',
+    'event_controller',
+    'event_service',
     'friends_service',
     'login_controller',
     'login_service',
@@ -80,14 +82,20 @@ angular.module(
   })
 
   .state('tab.events', {
-      url: '/events',
-      views: {
-        'tab-events': {
-          templateUrl: 'components/events/events.html',
-          controller: 'EventsCtrl'
-        }
+    url: '/events',
+    views: {
+      'tab-events': {
+        templateUrl: 'components/events/events.html',
+        controller: 'EventsCtrl'
       }
-    })
+    }
+  })
+
+  .state('event', {
+    url: '/event/:eventId',
+    controller: 'EventCtrl',
+    templateUrl: 'components/event/event.html',
+  })
 
   .state('tab.halfway', {
     url: '/halfway',
