@@ -2,7 +2,7 @@
   <ion-content class="padding" scroll="false">
     <div class="list">
       <label class="item item-input">
-        <input type="text" placeholder="Let's grab coffee :D">
+        <input type="text" placeholder="Let's grab coffee :D" ng-model="data.description">
       </label>
     </div>
 
@@ -31,11 +31,16 @@
 
     <label class="item item-input">
       <span class="input-label">Date</span>
-      <input type="date">
+      <input type="date" ng-model="data.date">
     </label>
     <label class="item item-input">
       <span class="input-label">Time</span>
-      <input type="time">
+      <input type="time" ng-model="data.time">
     </label>
+
+    <div class="bar bar-assertive" ng-click="createHalfwayEvent()">
+      <div class="title">Halfway</div>
+    </div>
+
   </ion-content>
 </ion-view>

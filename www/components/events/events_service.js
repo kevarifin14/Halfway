@@ -8,6 +8,10 @@ angular.module('events_service', ['ionic', 'ngResource'])
       query: {
         method: 'GET',
         headers: { 'Authorization': window.localStorage['userAccessToken'] }
+      },
+      create: {
+        method: 'POST',
+        headers: { 'Authorization': window.localStorage['userAccessToken'] }
       }
     }
   );
