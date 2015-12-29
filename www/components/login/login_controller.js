@@ -18,10 +18,13 @@ angular.module('login_controller', [])
     });
     user_session.$save(
       function(data) {
-        window.localStorage['userId'] = data.user_id
-        window.localStorage['username'] = data.username
-        window.localStorage['userEmail'] = data.email
-        window.localStorage['userAccessToken'] = data.access_token
+        window.localStorage['userId'] = data.user_id;
+        window.localStorage['username'] = data.username;
+        window.localStorage['userEmail'] = data.email;
+        window.localStorage['longitude'] = data.longitude;
+        window.localStorage['latitude'] = data.latitude;
+        window.localStorage['userAccessToken'] = data.access_token;
+
         $location.path('/tab/halfway');
         $ionicLoading.hide();
       },

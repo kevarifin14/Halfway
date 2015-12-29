@@ -11,7 +11,6 @@ angular.module('signup_controller', [])
   $scope.data = {};
 
   $scope.signup = function() {
-    debugger
     $ionicLoading.show();
     var new_user_session = new NewUserSession({
       email: $scope.data.email,

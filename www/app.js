@@ -16,12 +16,13 @@ angular.module(
     'event_controller',
     'event_service',
     'friends_service',
+    'halfway_controller',
     'login_controller',
     'login_service',
-    'maps_controller',
     'profile_controller',
     'signup_controller',
     'signup_service',
+    'user_service',
     'ngResource',
     'ngCordova'
   ])
@@ -71,16 +72,6 @@ angular.module(
     }
   })
 
-  .state('tab.maps', {
-    url: '/maps',
-    views: {
-      'tab-maps': {
-        templateUrl: 'components/maps/maps.html',
-        controller: 'MapsCtrl'
-      }
-    }
-  })
-
   .state('tab.events', {
     url: '/events',
     views: {
@@ -106,7 +97,7 @@ angular.module(
     views: {
       'tab-halfway': {
         templateUrl: 'components/halfway/halfway.html',
-        // controller: 'FriendsCtrl'
+        controller: 'HalfwayCtrl'
       }
     }
   })
