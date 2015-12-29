@@ -4,6 +4,9 @@
       <ion-item ng-repeat="event in events.events" ng-click="showDetails(event)">
         <h2>{{ event.description }}</h2>
           <p>{{ event.date }}</p>
+        <ion-option-button class="button-assertive" ng-click="delete(event)">
+          Delete
+        </ion-option-button>
       </ion-item>
     </ion-list>
   </ion-content>

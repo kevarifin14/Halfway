@@ -8,6 +8,10 @@ angular.module('event_service', ['ionic', 'ngResource'])
       get: {
         method: 'GET',
         headers: { 'Authorization': window.localStorage['userAccessToken'] }
+      },
+      delete: {
+        method: 'DELETE',
+        headers: { 'Authorization': window.localStorage['userAccessToken'] }
       }
     }
   );
