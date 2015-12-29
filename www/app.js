@@ -91,10 +91,14 @@ angular.module(
     }
   })
 
-  .state('event', {
+  .state('tab.event', {
     url: '/event/:eventId',
-    controller: 'EventCtrl',
-    templateUrl: 'components/event/event.html',
+    views: {
+      'tab-events': {
+        templateUrl: 'components/event/event.html',
+        controller: 'EventCtrl'
+      }
+    }
   })
 
   .state('tab.halfway', {
