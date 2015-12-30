@@ -11,7 +11,7 @@
         <div class="input-label">
           Category
         </div>
-        <select>
+        <select id="selectionList">
           <option>Bar</option>
           <option>Boba</option>
           <option>Chinese</option>
@@ -29,17 +29,27 @@
       </label>
     </div>
 
-    <label class="item item-input">
-      <span class="input-label">Date</span>
-      <input type="date" ng-model="data.date">
-    </label>
-    <label class="item item-input">
-      <span class="input-label">Time</span>
-      <input type="time" ng-model="data.time">
-    </label>
+    <div class="list">
+      <label class="item item-input">
+        <span class="input-label">Date</span>
+        <input type="date" ng-model="data.date">
+      </label>
+      <label class="item item-input">
+        <span class="input-label">Time</span>
+        <input type="time" ng-model="data.time">
+      </label>
+    </div>
 
-    <div class="bar bar-assertive" ng-click="createHalfwayEvent()">
-      <div class="title">Halfway</div>
+    <div class="list">
+      <ion-list>
+        <ion-checkbox ng-repeat="friend in friends.friendships" ng-click="toggleFriend(friend)">
+          <h2>{{ friend.username }}</h2>
+        </ion-checkbox>
+      </ion-list>
+
+      <div class="bar bar-assertive" ng-click="createHalfwayEvent()">
+        <div class="title">Halfway</div>
+      </div>
     </div>
 
   </ion-content>

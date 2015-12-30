@@ -1,6 +1,11 @@
-angular.module('halfway_controller', ['user_service', 'events_service'])
-
-.controller(
+angular.module(
+  'halfway_controller',
+  [
+    'user_service',
+    'events_service',
+    'friends_service'
+  ]
+).controller(
   'HalfwayCtrl',
   function(
     $scope,
@@ -8,11 +13,13 @@ angular.module('halfway_controller', ['user_service', 'events_service'])
     User,
     CurrentUser,
     Events,
+    Friends,
     $cordovaGeolocation,
     $ionicPopup
   ) {
     $scope.data = {};
-
+    $scope.friends = Friends.query();
+    $scope.invitedFriends = new Set();
     var posOptions = { timeout: 10000, enableHighAccuracy: true };
     $cordovaGeolocation
       .getCurrentPosition(posOptions)
@@ -31,13 +38,22 @@ angular.module('halfway_controller', ['user_service', 'events_service'])
       }
     );
     $scope.createHalfwayEvent = function() {
+      var selection = document.getElementById('selectionList');
+      var search_param = selection.options[selection.selectedIndex].text;
+      var date = new Date(
+        $scope.data.date.getYear(),
+        $scope.data.date.getMonth(),
+        $scope.data.date.getDate(),
+        $scope.data.time.getHours(),
+        $scope.data.time.getMinutes()
+      )
       Events.create(
         {
-          users: ["5"],
+          users: Array.from($scope.invitedFriends).map(String),
           user_id: CurrentUser.id(),
           event: {
-            search_param: 'food',
-            date: '2015-06-06',
+            search_param: search_param,
+            date: date,
             description: $scope.data.description,
           }
         }
@@ -45,6 +61,13 @@ angular.module('halfway_controller', ['user_service', 'events_service'])
       var confirmPopup = $ionicPopup.alert({
         title: 'Event created',
       });
+    }
+    $scope.toggleFriend = function(friend) {
+      if ($scope.invitedFriends.has(friend.id)) {
+        $scope.invitedFriends.delete(friend.id)
+      } else {
+        $scope.invitedFriends.add(friend.id);
+      }
     }
   }
 );
