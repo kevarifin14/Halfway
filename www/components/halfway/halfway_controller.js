@@ -15,8 +15,10 @@ angular.module(
     Events,
     Friends,
     $cordovaGeolocation,
-    $ionicPopup
+    $ionicPopup,
+    $ionicNavBarDelegate
   ) {
+    $ionicNavBarDelegate.showBackButton(false);
     $scope.data = {};
     $scope.friends = Friends.query();
     $scope.invitedFriends = new Set();

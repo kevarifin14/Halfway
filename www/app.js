@@ -10,6 +10,8 @@ angular.module(
   [
     'ionic',
     'ionic.service.core',
+    'tabSlideBox',
+    'tabSlideBoxScrollExtension',
     'entry_controller',
     'events_controller',
     'events_service',
@@ -82,24 +84,16 @@ angular.module(
     }
   })
 
-  .state('tab.event', {
+  .state('event', {
     url: '/event/:eventId',
-    views: {
-      'tab-events': {
-        templateUrl: 'components/event/event.html',
-        controller: 'EventCtrl'
-      }
-    }
+    templateUrl: 'components/event/event.html',
+    controller: 'EventCtrl'
   })
 
-  .state('tab.halfway', {
+  .state('halfway', {
     url: '/halfway',
-    views: {
-      'tab-halfway': {
-        templateUrl: 'components/halfway/halfway.html',
-        controller: 'HalfwayCtrl'
-      }
-    }
+    templateUrl: 'components/shared/tabs.html',
+    controller: 'HalfwayCtrl'
   })
 
   .state('login', {

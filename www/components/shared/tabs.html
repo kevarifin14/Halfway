@@ -3,7 +3,33 @@ Create tabs with an icon and label, using the tabs-positive style.
 Each tab's child <ion-nav-view> directive will have its own
 navigation history that also transitions its views in and out.
 -->
-<ion-tabs class="tabs-icon-top tabs-calm">
+<ion-view view-title="Halfway">
+<ion-content class="has-header">
+  <ion-nav-view>
+    <tab-slide-box>
+      <div class="tsb-icons">
+          <div class="tsb-ic-wrp">
+              <a href="javascript:;" class="ion-person"></a>
+              <a href="javascript:;" class="ion-ios-location"></a>
+              <a href="javascript:;" class="ion-ios-calendar"></a>
+          </div>
+      </div>
+      <ion-slide-box show-pager="false" on-slide-changed="slideHasChanged($index)">
+          <ion-slide>
+              <div ng-include="'components/profile/profile.html'" ng-controller="ProfileCtrl"></div>
+          </ion-slide>
+          <ion-slide>
+              <div ng-include="'components/halfway/halfway.html'" ng-controller="HalfwayCtrl"></div>
+          </ion-slide>
+          <ion-slide>
+              <div ng-include="'components/events/events.html'" ng-controller="EventsCtrl"></div>
+          </ion-slide>
+      </ion-slide-box>
+    </tab-slide-box>
+  </ion-nav-view>
+</ion-content>
+</ion-view>
+<!-- <ion-tabs class="tabs-icon-top tabs-calm">
   <ion-tab title="Profile" icon-off="ion-ios-person-outline" icon-on="ion-person" href="#/tab/profile">
     <ion-nav-view name="tab-profile"></ion-nav-view>
   </ion-tab>
@@ -16,3 +42,4 @@ navigation history that also transitions its views in and out.
     <ion-nav-view name="tab-events"></ion-nav-view>
   </ion-tab>
 </ion-tabs>
+ -->
