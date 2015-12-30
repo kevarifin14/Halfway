@@ -50,7 +50,7 @@
     height: 100%;
     overflow: hidden;
 }
-
+/*
 .tabbed-slidebox .tsb-icons:after {
     width: 0;
     height: 0;
@@ -63,7 +63,8 @@
     bottom: -12px;
     left: 50%;
     margin-left: -14px;
-}
+}*/
+
 .tsb-hscroll.scroll-view{
   	white-space: nowrap;
 	margin:0 auto;
