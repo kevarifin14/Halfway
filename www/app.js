@@ -94,7 +94,7 @@ angular.module(
     }
   })
 
-  .state('app.halfway.event', {
+  .state('app.event', {
     url: '/event/:eventId',
     views: {
       'menuContent': {

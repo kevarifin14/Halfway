@@ -11,7 +11,7 @@ angular.module('events_controller', ['current_user_service'])
   ) {
   $scope.events = Events.query({ user_id: CurrentUser.id() });
   $scope.showDetails = function(event) {
-    $location.path('/event/' + event.id);
+    $location.path('app/event/' + event.id);
   };
   $scope.delete = function(event) {
     Event.delete({ id: event.id });
