@@ -14,7 +14,6 @@ angular.module('friend_requests_controller', ['friend_requests_service'])
 
   $scope.friendRequests = FriendRequests.query();
   $scope.currentUser = CurrentUser.user();
-  debugger;
   if (!$scope.friendRequests.$resolved || $scope.friendRequests.requests.length == 0) {
     var noRequests = document.getElementById('no-requests');
     noRequests.style.display = '';
