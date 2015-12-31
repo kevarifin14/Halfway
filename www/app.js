@@ -20,6 +20,8 @@ angular.module(
     'event_service',
     'friends_service',
     'friends_controller',
+    'friend_requests_service',
+    'friend_requests_controller',
     'halfway_controller',
     'login_controller',
     'login_service',
@@ -94,6 +96,16 @@ angular.module(
     }
   })
 
+  .state('app.friendRequests', {
+    url: '/requests',
+    views: {
+      'menuContent': {
+        templateUrl: 'components/friend_requests/friend_requests.html',
+        controller: 'FriendRequestsCtrl'
+      }
+    }
+  })
+
   .state('app.event', {
     url: '/event/:eventId',
     views: {
@@ -123,5 +135,5 @@ angular.module(
   });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/halfway');
+  $urlRouterProvider.otherwise('/entry');
 });

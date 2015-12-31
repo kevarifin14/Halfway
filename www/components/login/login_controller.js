@@ -25,7 +25,7 @@ angular.module('login_controller', [])
         window.localStorage['latitude'] = data.latitude;
         window.localStorage['userAccessToken'] = data.access_token;
 
-        $location.path('/halfway');
+        $location.path('/app/halfway');
         $ionicLoading.hide();
       },
       function(err) {

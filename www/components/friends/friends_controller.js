@@ -45,7 +45,7 @@ angular.module('friends_controller', ['friends_service'])
   $scope.addFriend = function(friend) {
     Friends.add({ friend_id: friend.id, user_id: $scope.current_user.id })
     $ionicPopup.alert({
-        title: friend.username + ' added',
+        title: 'Request sent to ' + friend.username,
     });
   }
 });
