@@ -1,5 +1,8 @@
-<ion-view view-title="My Friends">
+<ion-view view-title="Added Me">
   <ion-content class="padding">
+    <div id="no-requests" style="display: none">
+      <center><h4>You don't have any friend requests :(</h4></center>
+    </div>
     <ion-list>
       <ion-item ng-repeat="request in friendRequests.requests" ng-click="respondToRequest(request)">
         <h2>{{ request.username }}</h2>
