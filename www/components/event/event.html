@@ -1,6 +1,8 @@
-<ion-view view-title="Event" hide-nav-bar="false">
+<ion-view view-title="{{ event.event.description }}" hide-nav-bar="false">
   <ion-content class="padding">
-    {{ event }}
+  	{{ event.event.search_param }} @ {{ event.event.meeting_point}} <br>
+    {{ event.event.address }} <br> <br>
+    {{ event.event.date | date:'short' }}
   </ion-content>
 </ion-view>
 
