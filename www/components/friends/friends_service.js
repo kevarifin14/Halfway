@@ -8,6 +8,10 @@ angular.module('friends_service', ['ionic', 'ngResource'])
       query: {
         method: 'GET',
         headers: { 'Authorization': window.localStorage['userAccessToken'] }
+      },
+      add: {
+        method: 'POST',
+        headers: { 'Authorization': window.localStorage['userAccessToken'] }
       }
     }
   );

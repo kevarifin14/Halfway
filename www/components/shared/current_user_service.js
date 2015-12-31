@@ -14,6 +14,9 @@ angular.module('current_user_service', ['ionic', 'ngResource'])
     },
     id: function() {
       return user.id;
+    },
+    username: function() {
+      return user.username;
     }
   };
 })

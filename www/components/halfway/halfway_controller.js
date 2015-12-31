@@ -16,8 +16,12 @@ angular.module(
     Friends,
     $cordovaGeolocation,
     $ionicPopup,
-    $ionicNavBarDelegate
+    $ionicNavBarDelegate,
+    $ionicSideMenuDelegate
   ) {
+    $scope.toggleLeft = function() {
+      $ionicSideMenuDelegate.toggleLeft();
+    };
     $ionicNavBarDelegate.showBackButton(false);
     $scope.data = {};
     $scope.friends = Friends.query();

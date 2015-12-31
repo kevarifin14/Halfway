@@ -24,6 +24,7 @@ angular.module(
     $ionicHistory.clearHistory();
     $ionicLoading.hide();
     $location.path('/entry');
+    location.reload();
   }
   $scope.initialize = function() {
     var latitude = localStorage['latitude'];

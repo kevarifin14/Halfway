@@ -10,6 +10,7 @@ angular.module(
   [
     'ionic',
     'ionic.service.core',
+    'jett.ionic.filter.bar',
     'tabSlideBox',
     'tabSlideBoxScrollExtension',
     'entry_controller',
@@ -18,6 +19,7 @@ angular.module(
     'event_controller',
     'event_service',
     'friends_service',
+    'friends_controller',
     'halfway_controller',
     'login_controller',
     'login_service',
@@ -25,6 +27,7 @@ angular.module(
     'signup_controller',
     'signup_service',
     'user_service',
+    'all_users_service',
     'ngResource',
     'ngCordova'
   ])
@@ -55,45 +58,50 @@ angular.module(
   // Each state's controller can be found in controllers.js
   $stateProvider
 
-  // setup an abstract state for the tabs directive
-    .state('tab', {
-    url: '/tab',
+  .state('app', {
+    url: '/app',
     abstract: true,
-    templateUrl: 'components/shared/tabs.html'
+    templateUrl: 'components/shared/menu.html',
   })
 
-  // Each tab has its own nav history stack:
-
-  .state('tab.profile', {
-    url: '/profile',
-    views: {
-      'tab-profile': {
-        templateUrl: 'components/profile/profile.html',
-        controller: 'ProfileCtrl'
-      }
-    }
-  })
-
-  .state('tab.events', {
-    url: '/events',
-    views: {
-      'tab-events': {
-        templateUrl: 'components/events/events.html',
-        controller: 'EventsCtrl'
-      }
-    }
-  })
-
-  .state('event', {
-    url: '/event/:eventId',
-    templateUrl: 'components/event/event.html',
-    controller: 'EventCtrl'
-  })
-
-  .state('halfway', {
+  .state('app.halfway', {
     url: '/halfway',
-    templateUrl: 'components/shared/tabs.html',
-    controller: 'HalfwayCtrl'
+    views: {
+      'menuContent': {
+        templateUrl: 'components/shared/tabs.html',
+        controller: 'HalfwayCtrl'
+      }
+    }
+  })
+
+  .state('app.friends', {
+    url: '/friends',
+    views: {
+      'menuContent': {
+        templateUrl: 'components/friends/friends.html',
+        controller: 'FriendsCtrl'
+      }
+    }
+  })
+
+  .state('app.addFriends', {
+    url: '/add_friends',
+    views: {
+      'menuContent': {
+        templateUrl: 'components/friends/add_friends.html',
+        controller: 'FriendsCtrl'
+      }
+    }
+  })
+
+  .state('app.halfway.event', {
+    url: '/event/:eventId',
+    views: {
+      'menuContent': {
+        templateUrl: 'components/event/event.html',
+        controller: 'EventCtrl'
+      }
+    }
   })
 
   .state('login', {
@@ -115,5 +123,5 @@ angular.module(
   });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/entry');
+  $urlRouterProvider.otherwise('/app/halfway');
 });

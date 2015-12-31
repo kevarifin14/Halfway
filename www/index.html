@@ -10,6 +10,7 @@
     <!-- compiled css output -->
     <link href="assets/css/ionic.app.css" rel="stylesheet">
     <link href="assets/css/tabSlideBox.css" rel="stylesheet">
+    <link rel="stylesheet" href="lib/ionic-filter-bar/dist/ionic.filter.bar.css">
 
     <!-- ionic/angularjs js -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
@@ -18,6 +19,7 @@
     <script src="lib/ionic-platform-web-client/dist/ionic.io.bundle.min.js"></script>
     <script src="assets/js/tabSlideBox.js"></script>
     <script src="assets/js/tabSlideBoxScrollExtension.js"></script>
+    <script src="lib/ionic-filter-bar/dist/ionic.filter.bar.js"></script>
 
     <!-- cordova script (this will be a 404 during development) -->
     <!-- Cordova is bootstrapped by ionic-platform-web-client, uncomment this if you remove ionic-platform-web-client... -->
@@ -29,6 +31,7 @@
     <script src="components/events/events_controller.js"></script>
     <script src="components/event/event_controller.js"></script>
     <script src="components/friends/friends_service.js"></script>
+    <script src="components/friends/friends_controller.js"></script>
     <script src="components/halfway/halfway_controller.js"></script>
     <script src="components/login/login_controller.js"></script>
     <script src="components/profile/profile_controller.js"></script>
@@ -39,6 +42,7 @@
     <script src="components/signup/signup_service.js"></script>
     <script src="components/shared/user_service.js"></script>
     <script src="components/shared/current_user_service.js"></script>
+    <script src="components/shared/all_users_service.js"></script>
   </head>
   <body ng-app="Halfway">
     <!--
@@ -48,6 +52,7 @@
       <ion-nav-back-button>
       </ion-nav-back-button>
     </ion-nav-bar>
+
     <!--
       The views will be rendered in the <ion-nav-view> directive below
       Templates are in the /templates folder (but you could also
