@@ -1,21 +1,28 @@
 <ion-side-menus>
-  <ion-side-menu side="left">
-    <ion-header-bar class="bar-stable">
+  <ion-side-menu side="left" width="250">
+<!--     <ion-header-bar class="bar-stable" class="profile">
       <h1 class="title">Halfway</h1>
     </ion-header-bar>
-    <ion-content>
+ -->    <ion-content>
+      <img ng-src="{{ profilePicture }}">
       <ion-list>
         <ion-item menu-close href="#/app/halfway">
           Halfway
         </ion-item>
+        <ion-item menu-close href="#/app/account">
+          <i class="ion-person"></i> Profile
+        </ion-item>
         <ion-item menu-close href="#/app/add_friends">
-          Add Friends
+          <i class="ion-person-add"></i> Add Friends
         </ion-item>
         <ion-item menu-close href="#/app/friends">
-          My Friends
+          <i class="ion-person-stalker"></i> My Friends
         </ion-item>
         <ion-item menu-close href="#/app/requests">
-          Added Me
+           <i class="fa fa-smile-o"></i> Added Me
+        </ion-item>
+        <ion-item ng-click="logout()">
+           Logout
         </ion-item>
       </ion-list>
     </ion-content>

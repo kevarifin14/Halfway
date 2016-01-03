@@ -13,11 +13,13 @@ angular.module(
     'jett.ionic.filter.bar',
     'tabSlideBox',
     'tabSlideBoxScrollExtension',
+    'account_controller',
     'entry_controller',
     'events_controller',
     'events_service',
     'event_controller',
     'event_service',
+    'camera_service',
     'friends_service',
     'friends_controller',
     'friend_requests_service',
@@ -25,6 +27,7 @@ angular.module(
     'halfway_controller',
     'login_controller',
     'login_service',
+    'main_controller',
     'profile_controller',
     'signup_controller',
     'signup_service',
@@ -64,6 +67,7 @@ angular.module(
     url: '/app',
     abstract: true,
     templateUrl: 'components/shared/menu.html',
+    controller: 'MainCtrl'
   })
 
   .state('app.halfway', {
@@ -112,6 +116,16 @@ angular.module(
       'menuContent': {
         templateUrl: 'components/event/event.html',
         controller: 'EventCtrl'
+      }
+    }
+  })
+
+  .state('app.account', {
+    url: '/account',
+    views: {
+      'menuContent': {
+        templateUrl: 'components/account/account.html',
+        controller: 'AccountCtrl'
       }
     }
   })

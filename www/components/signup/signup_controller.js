@@ -1,4 +1,4 @@
-angular.module('signup_controller', [])
+angular.module('signup_controller', ['camera_service'])
 
 .controller ('SignupCtrl', function(
   $scope,
@@ -6,7 +6,11 @@ angular.module('signup_controller', [])
   NewUserSession,
   $ionicPopup,
   $rootScope,
-  $ionicLoading
+  $ionicLoading,
+  $cordovaFile,
+  $cordovaCamera,
+  Camera,
+  User
 ) {
   $scope.data = {};
 

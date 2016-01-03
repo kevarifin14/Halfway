@@ -14,10 +14,12 @@ angular.module(
     CurrentUser,
     Events,
     Friends,
+    Camera,
     $cordovaGeolocation,
     $ionicPopup,
     $ionicNavBarDelegate,
-    $ionicSideMenuDelegate
+    $ionicSideMenuDelegate,
+    $cordovaFileTransfer
   ) {
     $scope.toggleLeft = function() {
       $ionicSideMenuDelegate.toggleLeft();
@@ -37,6 +39,7 @@ angular.module(
       });
     User.update(
       {
+        id: window.localStorage['userId'],
         user: {
           latitude: localStorage['latitude'],
           longitude: localStorage['longitude']
@@ -68,12 +71,28 @@ angular.module(
         title: 'Event created',
       });
     }
+
     $scope.toggleFriend = function(friend) {
       if ($scope.invitedFriends.has(friend.id)) {
         $scope.invitedFriends.delete(friend.id)
       } else {
         $scope.invitedFriends.add(friend.id);
       }
+    }
+
+    $scope.upload = function() {
+      document.addEventListener('deviceready', function() {
+        Camera.getPicture().then(function(imageData) {
+          $scope.avatar = imageData;
+          $cordovaFileTransfer.upload(
+            'http://halfway-db.herokuapp.com/v1/users/' + CurrentUser.id(),
+            imageData,
+            options
+          )
+        }, function (error) {
+          // error
+        });
+      });
     }
   }
 );

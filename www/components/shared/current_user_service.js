@@ -6,6 +6,7 @@ angular.module('current_user_service', ['ionic', 'ngResource'])
     username: window.localStorage['username'],
     email: window.localStorage['userEmail'],
     access_token: window.localStorage['userAccessToken'],
+    avatar: window.localStorage['profilePicture']
   }
 
   return {
@@ -17,6 +18,9 @@ angular.module('current_user_service', ['ionic', 'ngResource'])
     },
     username: function() {
       return user.username;
+    },
+    avatar: function() {
+      return user.avatar;
     }
   };
 })

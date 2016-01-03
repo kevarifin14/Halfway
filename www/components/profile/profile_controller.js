@@ -17,15 +17,6 @@ angular.module(
   $scope.current_user = CurrentUser.user()
   $scope.friends = Friends.query({ user_id: CurrentUser.id() })
 
-  $scope.logout = function() {
-    $ionicLoading.show();
-    window.localStorage.clear();
-    $ionicHistory.clearCache();
-    $ionicHistory.clearHistory();
-    $ionicLoading.hide();
-    $location.path('/entry');
-    location.reload();
-  }
   $scope.initialize = function() {
     var latitude = localStorage['latitude'];
     var longitude = localStorage['longitude'];
