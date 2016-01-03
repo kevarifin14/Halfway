@@ -24,7 +24,7 @@ angular.module('login_controller', [])
         window.localStorage['longitude'] = data.longitude;
         window.localStorage['latitude'] = data.latitude;
         window.localStorage['userAccessToken'] = data.access_token;
-        window.localStorage['profilePicture'] = 'http://halfway-db.herokuapp.com' + data.avatar;
+        window.localStorage['profilePicture'] = 'https://halfway-db.herokuapp.com' + data.avatar;
 
         $location.path('/app/halfway');
         $ionicLoading.hide();

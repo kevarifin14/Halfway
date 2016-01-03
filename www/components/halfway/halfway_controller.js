@@ -85,7 +85,7 @@ angular.module(
         Camera.getPicture().then(function(imageData) {
           $scope.avatar = imageData;
           $cordovaFileTransfer.upload(
-            'http://halfway-db.herokuapp.com/v1/users/' + CurrentUser.id(),
+            'https://halfway-db.herokuapp.com/v1/users/' + CurrentUser.id(),
             imageData,
             options
           )

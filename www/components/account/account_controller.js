@@ -41,7 +41,7 @@ angular.module(
           window.localStorage['profilePicture'] = imageData;
           $ionicLoading.show();
           $cordovaFileTransfer.upload(
-            'http://halfway-db.herokuapp.com/v1/users/' + CurrentUser.id(),
+            'https://halfway-db.herokuapp.com/v1/users/' + CurrentUser.id(),
             imageData,
             {
               fileKey: 'avatar',
