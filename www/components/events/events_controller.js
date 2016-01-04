@@ -17,4 +17,7 @@ angular.module('events_controller', ['current_user_service'])
     Event.delete({ id: event.id });
     $scope.events.events.splice($scope.events.events.indexOf(event), 1);
   }
+  $scope.dividerFunction = function(key){
+    return key;
+  }
 });
