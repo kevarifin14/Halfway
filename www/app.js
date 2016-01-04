@@ -13,6 +13,7 @@ angular.module(
     'jett.ionic.filter.bar',
     'tabSlideBox',
     'tabSlideBoxScrollExtension',
+    'ionic.ion.autoListDivider',
     'account_controller',
     'entry_controller',
     'events_controller',
