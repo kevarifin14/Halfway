@@ -1,5 +1,5 @@
 <ion-view view-title="Halfway">
-  <ion-content class="padding">
+  <ion-content class="padding" scroll="false">
     <div class="list">
       <label class="item item-input">
         <input type="text" placeholder="Let's grab coffee :D" ng-model="data.description">
@@ -41,11 +41,11 @@
     </div>
 
     <div class="list">
-      <ion-list>
+      <ion-scroll style="height: 200px;">
         <ion-checkbox ng-repeat="friend in friends.friendships" ng-click="toggleFriend(friend)">
           <h2>{{ friend.username }}</h2>
         </ion-checkbox>
-      </ion-list>
+      </ion-scroll>
 
       <div class="bar bar-assertive" ng-click="createHalfwayEvent()">
         <div class="title">Halfway</div>
