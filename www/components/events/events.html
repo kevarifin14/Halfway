@@ -1,5 +1,5 @@
 <ion-view view-title="Events">
-  <ion-content ion-sticky>
+  <ion-content ion-sticky ion-sticky-class="dark">
     <ion-list>
       <ion-item auto-list-divider auto-list-divider-value="{{ event.date | date:'mediumDate' }}" auto-list-divider-function="dividerFunction" ng-repeat="event in events.events" ng-click="showDetails(event)">
         <h2>{{ event.description }}</h2>
