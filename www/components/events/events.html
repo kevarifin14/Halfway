@@ -1,10 +1,14 @@
 <ion-view view-title="Events">
-  <ion-content ion-sticky ion-sticky-class="dark">
-    <ion-list>
+  <ion-content scroll="false" padding="true">
+
+  <div class="list" style="height:100%">
+    <ion-content scroll="true" ion-sticky ion-sticky-class="dark">
       <ion-item auto-list-divider auto-list-divider-value="{{ event.date | date:'mediumDate' }}" auto-list-divider-function="dividerFunction" ng-repeat="event in events.events" ng-click="showDetails(event)">
         <h2>{{ event.description }}</h2>
           <p>{{ event.date | date:'short' }}</p>
       </ion-item>
-    </ion-list>
+    </ion-content>
+  </div>
+
   </ion-content>
 </ion-view>
