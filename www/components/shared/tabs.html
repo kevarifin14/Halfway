@@ -7,18 +7,14 @@ navigation history that also transitions its views in and out.
 <ion-view view-title="Halfway">
   <ion-content scroll="false">
     <ion-nav-view name="menuContent">
-      <tab-slide-box>
+      <tab-slide-box tab="0">
         <div class="tsb-icons">
             <div class="tsb-ic-wrp">
-                <a href="javascript:;" class="ion-person"></a>
                 <a href="javascript:;" class="ion-ios-location"></a>
                 <a href="javascript:;" class="ion-ios-calendar"></a>
             </div>
         </div>
         <ion-slide-box show-pager="false" on-slide-changed="slideHasChanged($index)">
-            <ion-slide>
-              <div ng-include="'components/profile/profile.html'" ng-controller="ProfileCtrl"></div>
-            </ion-slide>
             <ion-slide>
               <div ng-include="'components/halfway/halfway.html'" ng-controller="HalfwayCtrl"></div>
             </ion-slide>

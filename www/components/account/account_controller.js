@@ -24,6 +24,7 @@ angular.module(
     $rootScope
   ) {
     $scope.avatar = window.localStorage['profilePicture'];
+    $scope.current_user = CurrentUser.user();
 
     var headers = { 'Authorization': window.localStorage['userAccessToken'] };
     var options = {
@@ -33,6 +34,27 @@ angular.module(
       mimeType: 'image/jpeg',
       httpMethod: 'PUT',
       headers: headers
+    }
+
+    $scope.initialize = function() {
+      var latitude = localStorage['latitude'];
+      var longitude = localStorage['longitude'];
+      var myLatlng = new google.maps.LatLng(latitude, longitude);
+
+      var mapOptions = {
+        center: myLatlng,
+        zoom: 16,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+      };
+
+      var map = new google.maps.Map(document.getElementById("map"),mapOptions);
+
+      var marker = new google.maps.Marker({
+        position: myLatlng,
+        map: map,
+      });
+
+      $scope.map = map;
     }
 
     $scope.upload = function() {

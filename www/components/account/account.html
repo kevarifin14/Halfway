@@ -2,7 +2,10 @@
   <ion-content class="padding">
     <div class="padding">
       <img ng-src="{{ avatar }}" id="avatar" width="250 " height="250" style="display: block; margin: 0 auto;"/><br/>
-      <button class="button button-block button-energized" ng-click="upload()">Update Profile Picture</button>
+      <button class="button button-block button-dark" ng-click="upload()">Update Profile Picture</button>
     </div>
+  </ion-content>
+  <ion-content ng-init="initialize()" scroll="false">
+    <div id="map" data-tap-disabled="true"></div>
   </ion-content>
 </ion-view>
