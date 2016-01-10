@@ -20,7 +20,8 @@ angular.module(
     $ionicNavBarDelegate,
     $ionicSideMenuDelegate,
     $cordovaFileTransfer,
-    $ionicLoading
+    $ionicLoading,
+    $rootScope
   ) {
     $scope.avatar = window.localStorage['profilePicture'];
 
@@ -38,6 +39,8 @@ angular.module(
       document.addEventListener('deviceready', function() {
         Camera.getPicture().then(function(imageData) {
           $scope.avatar = imageData;
+          $rootScope.profilePicture = imageData;
+          CurrentUser.updateAvatar(imageData);
           window.localStorage['profilePicture'] = imageData;
           $ionicLoading.show();
           $cordovaFileTransfer.upload(

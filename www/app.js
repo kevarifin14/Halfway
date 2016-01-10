@@ -67,6 +67,11 @@ angular.module(
   .state('app', {
     url: '/app',
     abstract: true,
+    resolve: {
+      profilePicture: function(CurrentUser) {
+        return CurrentUser.avatar();
+      }
+    },
     templateUrl: 'components/shared/menu.html',
     controller: 'MainCtrl'
   })

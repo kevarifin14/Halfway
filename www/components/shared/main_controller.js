@@ -10,9 +10,10 @@ angular.module('main_controller', ['camera_service'])
   $cordovaFile,
   $cordovaCamera,
   CurrentUser,
-  User
+  User,
+  profilePicture
 ) {
-  $scope.profilePicture = CurrentUser.avatar();
+  $rootScope.profilePicture = profilePicture;
 
   $scope.logout = function() {
     $ionicLoading.show();

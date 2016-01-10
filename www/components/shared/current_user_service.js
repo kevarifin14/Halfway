@@ -21,6 +21,9 @@ angular.module('current_user_service', ['ionic', 'ngResource'])
     },
     avatar: function() {
       return user.avatar;
+    },
+    updateAvatar: function(newAvatar) {
+      user.avatar = newAvatar;
     }
   };
 })
