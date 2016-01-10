@@ -15,15 +15,15 @@ $royal:                           #886aea !default;
 $dark:                            #444 !default;
 */
 
-$light:                           #FAFAFA !default;
 $stable:                          #EEE !default;
 $positive:                        #007aff !default;
-$calm:                            #5ac8fa !default;
+$calm:                            #FF5E3A !default;
 $balanced:                        #4Cd964 !default;
 $energized:                       #FF9500 !default;
 $assertive:                       #ff2d55 !default;
 $royal:                           #5856d6 !default;
 $dark:                            #333 !default;
+$light:                           #FFFFFF !default;
 
 .bar { background-image: none !important; }
 .profile {
@@ -54,6 +54,11 @@ h1 {
   width: 100%;
   height: 50%;
 }
+
+.gradient {
+  background: linear-gradient(#FF5E3A, #FF2A68); /* Standard syntax */
+}
+
 
 // The path for our ionicons font files, relative to the built CSS in www/css
 $ionicons-font-path: "../../lib/ionic/fonts" !default;
