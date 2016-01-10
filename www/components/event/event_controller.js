@@ -6,7 +6,12 @@ angular.module('event_controller', ['current_user_service'])
     $scope,
     $stateParams,
     Event,
-    CurrentUser
+    CurrentUser,
+    $ionicHistory
   ) {
   $scope.event = Event.get({ id: $stateParams.eventId });
+
+  $scope.goBack = function() {
+    $ionicHistory.goBack();
+  };
 });

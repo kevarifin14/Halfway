@@ -6,7 +6,8 @@ angular.module('login_controller', [])
   UserSession,
   $ionicPopup,
   $rootScope,
-  $ionicLoading
+  $ionicLoading,
+  $ionicHistory
 ) {
   $scope.data = {};
 
