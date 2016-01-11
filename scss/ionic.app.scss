@@ -31,9 +31,21 @@ $light:                           #FFFFFF !default;
   background-color: blue;
 }
 .button-circle {
-  width: 50px !important;
-  height: 50px !important;
+  width: 75px !important;
+  height: 75px !important;
   border-radius: 50% !important;
+}
+
+#entry-logo {
+  height: 200px;
+  widht: 200px;
+  margin: auto;
+  text-align: center;
+}
+
+#logo-container {
+  margin: 0 auto;
+  width: 200px;
 }
 
 #entry-buttons {
