@@ -1,5 +1,17 @@
 <ion-view view-title="Halfway">
   <ion-content class="padding" scroll="false">
+
+    <div class="list" style="margin-bottom:-20px; height:250px">
+      <ion-content scroll="true" ion-sticky ion-sticky-class="dark">
+        <ion-checkbox auto-list-divider 
+          auto-list-divider-value="{{ friend.username }}" 
+          ng-repeat="friend in friends.friendships" 
+          ng-click="toggleFriend(friend)">
+          <h2>{{ friend.username }}</h2>
+        </ion-checkbox>
+      </ion-content>
+    </div>
+
     <div class="list">
       <label class="item item-input">
         <input type="text" placeholder="Let's grab coffee :D" ng-model="data.description">
@@ -38,14 +50,6 @@
         <span class="input-label">Time</span>
         <input type="time" ng-model="data.time">
       </label>
-    </div>
-
-    <div class="list">
-      <ion-scroll style="height: 200px;">
-        <ion-checkbox ng-repeat="friend in friends.friendships" ng-click="toggleFriend(friend)">
-          <h2>{{ friend.username }}</h2>
-        </ion-checkbox>
-      </ion-scroll>
     </div>
 
     <div>
