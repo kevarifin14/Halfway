@@ -4,9 +4,17 @@
   </ion-nav-buttons>
 
   <ion-content class="padding">
-  	{{ event.event.search_param }} @ {{ event.event.meeting_point}} <br>
-    {{ event.event.address }} <br> <br>
+    {{ event.event.meeting_point}} <br>
+    {{ event.event.address }} <br>
     {{ event.event.date | date:'short' }}
+    <div class="list">
+      <ion-scroll style="height: 200px;">
+        <ion-item ng-repeat="friend in event.event.friends">
+          {{ friend.username }}
+          <span class="item-note">{{ rsvpHash[friend.id] }}</span>
+        </ion-item>
+      </ion-scroll>
+    </div>
   </ion-content>
 </ion-view>
 

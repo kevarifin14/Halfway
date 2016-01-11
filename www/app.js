@@ -27,6 +27,7 @@ angular.module(
     'friend_requests_service',
     'friend_requests_controller',
     'halfway_controller',
+    'invitations_service',
     'login_controller',
     'login_service',
     'main_controller',
@@ -119,6 +120,17 @@ angular.module(
 
   .state('app.event', {
     url: '/event/:eventId',
+    resolve: {
+      event: function(Event, $stateParams) {
+        return Event.get({ id: $stateParams.eventId });
+      },
+      invitations: function(Invitations, $stateParams) {
+        return Invitations.query({ event_id: $stateParams.eventId })
+          .$promise.then(function(invitations) {
+            return invitations;
+          })
+      }
+    },
     views: {
       'menuContent': {
         templateUrl: 'components/event/event.html',
