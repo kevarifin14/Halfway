@@ -29,10 +29,8 @@ angular.module('event_controller', ['current_user_service'])
   $scope.rsvpBool = rsvpBool;
   $scope.currentUserInvitationId = currentUserInvitationId;
   $scope.rsvp = rsvpBool[CurrentUser.id()];
-
   $scope.event = event;
   $scope.invitations = invitations;
-
   $scope.goBack = function() {
     $ionicHistory.goBack();
   };
@@ -41,7 +39,13 @@ angular.module('event_controller', ['current_user_service'])
     var currentUserId = CurrentUser.id();
     $scope.rsvp = !$scope.rsvp;
     rsvpBool[currentUserId] = $scope.rsvp;
-    Invitation.update({ invitation: { rsvp: $scope.rsvp } });
+    Invitation.update(
+      { id: currentUserInvitationId,
+        invitation: {
+          rsvp: $scope.rsvp
+        }
+      }
+    );
     $ionicPopup.alert({
       title: 'RSVP changed sucessfully'
     })
