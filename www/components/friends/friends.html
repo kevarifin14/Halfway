@@ -1,7 +1,7 @@
 <ion-view view-title="My Friends">
   <ion-content class="padding" scroll="false">
   	<div class="list" style="height:100%">
-    	<ion-list scroll="true">
+    	<ion-list scroll="true" ion-sticky ion-sticky-class="dark">
       	<ion-item auto-list-divider
       		auto-list-divider-value="{{ friend.username }}"
       		ng-repeat="friend in friends.friendships">
