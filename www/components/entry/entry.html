@@ -8,14 +8,22 @@
     <br>
     <br>
     <div id="entry-buttons" class="padding col-33 col-offset-33">
-      <button class="button button-circle button-light" ng-click="showLogin()">
+      <button class="button button-circle button-light" ng-click="login.show()">
         <i class="icon ion-person" alignment="center"></i>
       </button>
     </div>
     <div id="entry-buttons" class="padding col-33 col-offset-33">
-      <button class="button button-circle button-light" ng-click="showSignup()">
+      <button class="button button-circle button-light" ng-click="signup.show()">
         <i class="icon ion-plus-round"></i>
       </button>
     </div>
   </ion-content>
 </ion-view>
+
+<script id="login.html" type="text/ng-template">
+  <div ng-include="'components/login/login.html'"></div>
+</script>
+
+<script id="signup.html" type="text/ng-template">
+  <div ng-include="'components/signup/signup.html'"></div>
+</script>

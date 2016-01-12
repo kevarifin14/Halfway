@@ -1,4 +1,8 @@
-<ion-view name="login-view" view-title="Login">
+<ion-modal-view class="modal" >
+  <ion-header-bar>
+    <h1 class="title">Login</h1>
+    <div class="button button-clear" ng-click="login.hide()"><span class="icon ion-close"></span></div>
+  </ion-header-bar>
   <ion-content scroll="false">
     <div class="list">
       <label class="item item-input item-floating-label">
@@ -12,7 +16,7 @@
     </div>
 
     <div class="padding">
-      <button class="button button-block button-calm" ng-click="login()">Login</button>
+      <button class="button button-block button-calm" ng-click="loginUser()">Login</button>
     </div>
   </ion-content>
-</ion-view>
+</ion-modal-view>
