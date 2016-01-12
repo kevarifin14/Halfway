@@ -2,7 +2,6 @@
   <ion-nav-buttons side="left">
    <button class="button button-clear" ng-click="goBack()"><i class="icon ion-ios-arrow-back"></i> Back</button>
   </ion-nav-buttons>
-
   <ion-content class="padding">
     {{ event.event.meeting_point}} <br>
     {{ event.event.address }} <br>
@@ -11,10 +10,14 @@
       <ion-scroll style="height: 200px;">
         <ion-item ng-repeat="friend in event.event.friends">
           {{ friend.username }}
-          <span class="item-note">{{ rsvpHash[friend.id] }}</span>
+          <span class="item-note">{{ message[rsvpBool[friend.id]] }}</span>
         </ion-item>
       </ion-scroll>
     </div>
+    <ion-toggle ng-model="rsvp" toggle-class="toggle-calm" ng-click="changeRsvp()">
+      Going?
+    </ion-toggle>
+  </div>
   </ion-content>
 </ion-view>
 

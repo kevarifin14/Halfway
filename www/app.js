@@ -28,6 +28,7 @@ angular.module(
     'friend_requests_controller',
     'halfway_controller',
     'invitations_service',
+    'invitation_service',
     'login_controller',
     'login_service',
     'main_controller',
