@@ -73,9 +73,6 @@ angular.module(
     resolve: {
       profilePicture: function(CurrentUser) {
         return CurrentUser.avatar();
-      },
-      friendsList: function(Friends) {
-        return Friends.query()
       }
     },
     templateUrl: 'components/shared/menu.html',
