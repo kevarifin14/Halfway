@@ -9,7 +9,7 @@
         ng-repeat="event in events.events"
         ng-click="showDetails(event)">
         <h2>{{ event.description }}</h2>
-          <p>{{ event.date | date:'short' }}</p>
+          <p>{{ event.date | date:'shortTime' }}</p>
       </ion-item>
     </ion-content>
   </div>
