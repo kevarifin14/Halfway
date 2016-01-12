@@ -1,29 +1,28 @@
-<ion-modal-view class="modal">
-  <ion-header-bar>
-    <h1 class="title">Sign Up</h1>
-    <div class="button button-clear" ng-click="signup.hide()"><span class="icon ion-close"></span></div>
-  </ion-header-bar>
-  <ion-content>
-    <div class="list">
-      <label class="item item-input item-floating-label">
-        <span class="input-label">Email</span>
-        <input type="email" placeholder="Email" ng-model="data.email">
-      </label>
-      <label class="item item-input item-floating-label">
-        <span class="input-label">Username</span>
-        <input type="text" placeholder="Username" ng-model="data.username">
-      </label>
-      <label class="item item-input item-floating-label">
-        <span class="input-label">Password</span>
-        <input type="password" placeholder="Password" ng-model="data.password">
-      </label>
-      <label class="item item-input item-floating-label">
-        <span class="input-label">Password Confirmation</span>
-        <input type="password" placeholder="Password Confirmation" ng-model="data.password_confirmation">
-      </label>
-    </div>
-    <div class="padding">
-      <button class="button button-block button-calm" ng-click="signupUser()">Sign Up</button>
-    </div>
-  </ion-content>
-</ion-modal-view>
+<ion-header-bar class="bar bar-calm">
+  <h1 class="title">Sign Up</h1>
+  <div class="button button-clear" ng-click="signup.hide()"><span class="icon ion-close"></span></div>
+</ion-header-bar>
+<ion-content>
+  <div class="list">
+    <label class="item item-input item-floating-label">
+      <span class="input-label">Email</span>
+      <input type="email" placeholder="Email" ng-model="data.email">
+    </label>
+    <label class="item item-input item-floating-label">
+      <span class="input-label">Username</span>
+      <input type="text" placeholder="Username" ng-model="data.username">
+    </label>
+    <label class="item item-input item-floating-label">
+      <span class="input-label">Password</span>
+      <input type="password" placeholder="Password" ng-model="data.password">
+    </label>
+    <label class="item item-input item-floating-label">
+      <span class="input-label">Password Confirmation</span>
+      <input type="password" placeholder="Password Confirmation" ng-model="data.password_confirmation">
+    </label>
+  </div>
+  <div class="padding">
+    <button class="button button-block button-calm" ng-click="signupUser()">Sign Up</button>
+  </div>
+</ion-content>
+

@@ -18,14 +18,14 @@ angular.module('entry_controller', [])
     $location.path('/signup');
   }
 
- $ionicModal.fromTemplateUrl('login.html', {
+  $ionicModal.fromTemplateUrl('login.html', {
     scope: $scope,
     animation: 'slide-in-up'
   }).then(function(modal) {
     $scope.login = modal;
   });
 
- $ionicModal.fromTemplateUrl('signup.html', {
+  $ionicModal.fromTemplateUrl('signup.html', {
     scope: $scope,
     animation: 'slide-in-up'
   }).then(function(modal) {
@@ -67,6 +67,7 @@ angular.module('entry_controller', [])
 
   $scope.signupUser = function() {
     $ionicLoading.show();
+    $scope.signup.hide();
     var new_user_session = new NewUserSession({
       email: $scope.data.email,
       username: $scope.data.username,
