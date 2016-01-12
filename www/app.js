@@ -73,6 +73,9 @@ angular.module(
     resolve: {
       profilePicture: function(CurrentUser) {
         return CurrentUser.avatar();
+      },
+      friendsList: function(Friends) {
+        return Friends.query()
       }
     },
     templateUrl: 'components/shared/menu.html',
@@ -81,6 +84,11 @@ angular.module(
 
   .state('app.halfway', {
     url: '/halfway',
+    resolve: {
+      friendsList: function(Friends) {
+        return Friends.query()
+      }
+    },
     views: {
       'menuContent': {
         templateUrl: 'components/shared/tabs.html',

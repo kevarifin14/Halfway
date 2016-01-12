@@ -39,7 +39,7 @@ angular.module('event_controller', ['current_user_service'])
     var currentUserId = CurrentUser.id();
     $scope.rsvp = !$scope.rsvp;
     rsvpBool[currentUserId] = $scope.rsvp;
-    Invitation.update(
+    $scope.result = Invitation.update(
       { id: currentUserInvitationId,
         invitation: {
           rsvp: $scope.rsvp
