@@ -83,10 +83,7 @@ angular.module(
     url: '/halfway',
     resolve: {
       friendsList: function(Friends) {
-        return Friends.query()
-          .$promise.then(function(friends) {
-            return friends;
-          })
+        return Friends.query();
       }
     },
     views: {
