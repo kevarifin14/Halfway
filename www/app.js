@@ -15,6 +15,7 @@ angular.module(
     'tabSlideBoxScrollExtension',
     'ionic.ion.autoListDivider',
     'ion-sticky',
+    'ion-alpha-scroll',
     'account_controller',
     'entry_controller',
     'events_controller',

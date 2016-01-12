@@ -1,13 +1,11 @@
 <ion-view view-title="My Friends">
   <ion-content class="padding" scroll="false">
-  	<div class="list" style="height:100%">
-    	<ion-list scroll="true">
-      	<ion-item auto-list-divider
-      		auto-list-divider-value="{{ friend.username }}"
-      		ng-repeat="friend in friends.friendships">
-        	<h2>{{ friend.username }}</h2>
-      	</ion-item>
-    	</ion-list>
-		</div>
+    <div class="list" style="height:100%">
+      <ion-content scroll="true">
+        <ion-alpha-scroll ng-model="friends.friendships" key="username" subheader="true">
+          <h2>{{ item.username }}</h2>
+      </ion-alpha-scroll>
+      </ion-content>
+    </div>
   </ion-content>
 </ion-view>
