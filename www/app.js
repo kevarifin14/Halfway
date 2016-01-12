@@ -87,6 +87,9 @@ angular.module(
     resolve: {
       friendsList: function(Friends) {
         return Friends.query()
+          .$promise.then(function(friends) {
+            return friends;
+          })
       }
     },
     views: {
