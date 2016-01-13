@@ -25,6 +25,10 @@ $royal:                           #5856d6 !default;
 $dark:                            #333 !default;
 $light:                           #FFFFFF !default;
 
+.tagline {
+  color: white;
+  text-align: center;
+}
 .bar { background-image: none !important; }
 .profile {
   height: 100px;

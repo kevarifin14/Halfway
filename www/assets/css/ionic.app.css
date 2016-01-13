@@ -15,6 +15,10 @@ $assertive:                       #ef473a !default;
 $royal:                           #886aea !default;
 $dark:                            #444 !default;
 */
+.tagline {
+  color: white;
+  text-align: center; }
+
 .bar {
   background-image: none !important; }
 
