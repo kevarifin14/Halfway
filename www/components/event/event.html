@@ -3,16 +3,18 @@
    <button class="button button-clear" ng-click="goBack()"><i class="icon ion-ios-arrow-back"></i> Back</button>
   </ion-nav-buttons>
   <ion-content class="padding">
-    {{ event.event.meeting_point}} <br>
-    {{ event.event.address }} <br>
-    {{ event.event.date | date:'short' }}
-    {{ event.event.latitude }}
-    {{ meetingPointLongitude }}
+    {{ event.meeting_point}} <br>
+    {{ event.address }} <br>
+    {{ event.date | date:'short' }}
+    {{ event.latitude }}
+    {{ event.longitude }}
     <br>
-    <img ng-src="{{ meetingPointImage }}">
+    <img ng-src="{{ event.image }}">
+    <ion-refresher pulling-text="Pull to refresh..." on-refresh="doRefresh()">
+    </ion-refresher>
     <div class="list">
       <ion-scroll style="height: 200px;">
-        <ion-item ng-repeat="friend in event.event.friends">
+        <ion-item ng-repeat="friend in event.friends">
           {{ friend.username }}
           <span class="item-note">{{ message[rsvpBool[friend.id]] }}</span>
         </ion-item>
