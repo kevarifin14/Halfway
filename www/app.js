@@ -127,7 +127,10 @@ angular.module(
     url: '/event/:eventId',
     resolve: {
       event: function(Event, $stateParams) {
-        return Event.get({ id: $stateParams.eventId });
+        return Event.get({ id: $stateParams.eventId })
+          .$promise.then(function(event) {
+            return event;
+          });
       },
       invitations: function(Invitations, $stateParams) {
         return Invitations.query({ event_id: $stateParams.eventId })
