@@ -14,7 +14,8 @@
     </ion-refresher>
     <div class="list">
       <ion-scroll style="height: 200px;">
-        <ion-item ng-repeat="friend in event.friends">
+        <ion-item ng-repeat="friend in event.friends" class="item item-avatar">
+          <img src="{{ friend.avatar }}">
           {{ friend.username }}
           <span class="item-note">{{ message[rsvpBool[friend.id]] }}</span>
         </ion-item>
