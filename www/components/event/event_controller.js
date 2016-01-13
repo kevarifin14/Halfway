@@ -36,6 +36,11 @@ angular.module('event_controller', ['current_user_service'])
   $scope.event = event;
   $scope.invitations = invitations;
   $scope.rsvpTrueCount = rsvpTrueCount;
+
+  $scope.meetingPointLatitude = $scope.event.event.latitude;
+  $scope.meetingPointLongitude = $scope.event.event.longitude;
+  $scope.meetingPointImage = $scope.event.event.image;
+
   $scope.goBack = function() {
     $ionicHistory.goBack();
   };

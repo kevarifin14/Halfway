@@ -6,6 +6,10 @@
     {{ event.event.meeting_point}} <br>
     {{ event.event.address }} <br>
     {{ event.event.date | date:'short' }}
+    {{ event.event.latitude }}
+    {{ meetingPointLongitude }}
+    <br>
+    <img ng-src="{{ meetingPointImage }}">
     <div class="list">
       <ion-scroll style="height: 200px;">
         <ion-item ng-repeat="friend in event.event.friends">
