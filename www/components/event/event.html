@@ -2,29 +2,42 @@
   <ion-nav-buttons side="left">
    <button class="button button-clear" ng-click="goBack()"><i class="icon ion-ios-arrow-back"></i> Back</button>
   </ion-nav-buttons>
-  <ion-content class="padding">
-    {{ event.meeting_point}} <br>
-    {{ event.address }} <br>
-    {{ event.date | date:'short' }}
-    {{ event.latitude }}
-    {{ event.longitude }}
-    <br>
-    <img ng-src="{{ event.image }}">
-    <ion-refresher pulling-text="Pull to refresh..." on-refresh="doRefresh()">
-    </ion-refresher>
-    <div class="list">
-      <ion-scroll style="height: 200px;">
-        <ion-item ng-repeat="friend in event.friends" class="item item-avatar">
-          <img src="{{ friend.avatar }}">
-          {{ friend.username }}
-          <span class="item-note">{{ message[rsvpBool[friend.id]] }}</span>
-        </ion-item>
-      </ion-scroll>
-    </div>
-    <ion-toggle ng-model="rsvp" ng-disabled="enoughGoing()" toggle-class="toggle-calm" ng-click="changeRsvp()">
-      Going?
-    </ion-toggle>
-  </div>
+  <ion-content>
+    <ion-tabs class="tabs-calm tabs-icon-only tabs-striped">
+      <ion-tab icon="ion-calendar">
+        <ion-content class="padding">
+          <div class="list">
+            {{ event.meeting_point}} <br>
+            {{ event.address }} <br>
+            {{ event.date | date:'short' }}
+            {{ event.latitude }}
+            {{ event.longitude }}
+          </div>
+          <br>
+          <img ng-src="{{ event.image }}">
+          <ion-refresher pulling-text="Pull to refresh..." on-refresh="doRefresh()">
+          </ion-refresher>
+          <div class="list">
+            <ion-scroll style="height: 200px;">
+              <ion-item ng-repeat="friend in event.friends" class="item item-avatar">
+                <img src="{{ friend.avatar }}">
+                {{ friend.username }}
+                <span class="item-note">{{ message[rsvpBool[friend.id]] }}</span>
+              </ion-item>
+            </ion-scroll>
+          </div>
+          <ion-toggle ng-model="rsvp" ng-disabled="enoughGoing()" toggle-class="toggle-calm" ng-click="changeRsvp()">
+            Going?
+          </ion-toggle>
+        </ion-content>
+      </ion-tab>
+
+      <ion-tab icon="ion-map">
+        <ion-content ng-init="initialize()" scroll="false">
+          <div id="map" data-tap-disabled="true"></div>
+        </ion-content>
+      </ion-tab>
+    </ion-tabs>
   </ion-content>
 </ion-view>
 
