@@ -14,7 +14,7 @@
         </ion-item>
       </ion-scroll>
     </div>
-    <ion-toggle ng-model="rsvp" toggle-class="toggle-calm" ng-click="changeRsvp()">
+    <ion-toggle ng-model="rsvp" ng-disabled="enoughGoing()" toggle-class="toggle-calm" ng-click="changeRsvp()">
       Going?
     </ion-toggle>
   </div>

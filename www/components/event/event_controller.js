@@ -16,12 +16,16 @@ angular.module('event_controller', ['current_user_service'])
   ) {
   $scope.message = { true: 'Going', false: 'Invited' };
   var rsvpBool = {};
+  var rsvpTrueCount = 0;
   var inviteList = invitations.invitations;
   for (var i = 0; i < inviteList.length; i++) {
     if (inviteList[i].user_id == CurrentUser.id()) {
       var currentUserInvitationId = inviteList[i].id;
     }
     rsvpBool[inviteList[i].user_id] = inviteList[i].rsvp;
+    if (inviteList[i].rsvp) {
+      rsvpTrueCount += 1;
+    }
   }
 
   window.localStorage['currentEventId'] = currentUserInvitationId;
@@ -31,9 +35,14 @@ angular.module('event_controller', ['current_user_service'])
   $scope.rsvp = rsvpBool[CurrentUser.id()];
   $scope.event = event;
   $scope.invitations = invitations;
+  $scope.rsvpTrueCount = rsvpTrueCount;
   $scope.goBack = function() {
     $ionicHistory.goBack();
   };
+
+  $scope.enoughGoing = function() {
+    return ($scope.rsvpBool[CurrentUser.id()] && $scope.rsvpTrueCount == 1)
+  }
 
   $scope.changeRsvp = function() {
     var currentUserId = CurrentUser.id();

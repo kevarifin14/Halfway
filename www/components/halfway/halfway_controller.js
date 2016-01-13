@@ -47,7 +47,6 @@ angular.module(
       }
     );
     $scope.createHalfwayEvent = function() {
-      debugger;
       var selection = document.getElementById('selectionList');
       var search_param = selection.options[selection.selectedIndex].text;
       var date = new Date(
