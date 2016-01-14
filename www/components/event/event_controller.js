@@ -12,7 +12,9 @@ angular.module('event_controller', ['current_user_service'])
     Invitation,
     event,
     invitations,
-    $ionicPopup
+    $ionicPopup,
+    $ionicLoading,
+    $cordovaGeolocation
   ) {
   $scope.message = { true: 'Going', false: 'Invited' };
   var rsvpBool = {};
@@ -74,23 +76,50 @@ angular.module('event_controller', ['current_user_service'])
   }
 
   $scope.initialize = function() {
-    var latitude = $scope.event.latitude;
-    var longitude = $scope.event.longitude;
-    var myLatlng = new google.maps.LatLng(latitude, longitude);
+    var directionsService = new google.maps.DirectionsService;
+    var directionsDisplay = new google.maps.DirectionsRenderer;
+
+    $scope.meetingPoint = new google.maps.LatLng($scope.event.latitude, $scope.event.longitude);
+    $scope.currentLocation = new google.maps.LatLng(CurrentUser.latitude(), CurrentUser.longitude());
 
     var mapOptions = {
-      center: myLatlng,
+      center: $scope.meetingPoint,
       zoom: 18,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
 
     var map = new google.maps.Map(document.getElementById("map"),mapOptions);
 
-    var marker = new google.maps.Marker({
-      position: myLatlng,
-      map: map,
-    });
+    directionsDisplay.setMap(map);
 
     $scope.map = map;
+
+    calculateAndDisplayRoute(directionsService, directionsDisplay)
+  }
+
+  function calculateAndDisplayRoute(directionsService, directionsDisplay) {
+    $ionicLoading.show();
+    var posOptions = { timeout: 10000, enableHighAccuracy: true };
+    $cordovaGeolocation
+      .getCurrentPosition(posOptions)
+      .then(function (position) {
+        var lat  = position.coords.latitude
+        var lng = position.coords.longitude
+        directionsService.route({
+          origin: new google.maps.LatLng(lat, lng),
+          destination: $scope.event.address,
+          travelMode: google.maps.TravelMode.DRIVING
+        }, function(response, status) {
+          $ionicLoading.hide();
+          if (status === google.maps.DirectionsStatus.OK) {
+            directionsDisplay.setDirections(response);
+          } else {
+            window.alert('Directions request failed due to ' + status);
+          }
+        });
+      }, function(err) {
+        // error
+      });
+
   }
 });
