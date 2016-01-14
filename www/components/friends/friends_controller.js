@@ -42,6 +42,11 @@ angular.module('friends_controller', ['friends_service'])
     });
   }
 
+  $scope.doRefresh = function() {
+    $scope.friends = Friends.query({ user_id: CurrentUser.id() });
+    $scope.$broadcast('scroll.refreshComplete');
+  }
+
   $scope.addFriend = function(friend) {
     Friends.add({ friend_id: friend.id, user_id: $scope.current_user.id })
     $ionicPopup.alert({
