@@ -3,12 +3,11 @@
 
   <ion-refresher pulling-text="Pull to refresh..." on-refresh="doRefresh()">
   </ion-refresher>
-  
+
   	<div class="list" style="height:100%">
     	<ion-list scroll="true">
       	<ion-item auto-list-divider
           class="item item-avatar"
-      		auto-list-divider-value="{{ friend.username }}"
       		ng-repeat="friend in friends.friendships">
           <img src="{{ friend.avatar }}">
         	<h2>{{ friend.username }}</h2>
