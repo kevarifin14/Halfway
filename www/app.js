@@ -80,11 +80,6 @@ angular.module(
 
   .state('app.halfway', {
     url: '/halfway',
-    resolve: {
-      friendsList: function(Friends) {
-        return Friends.query();
-      }
-    },
     views: {
       'menuContent': {
         templateUrl: 'components/shared/tabs.html',

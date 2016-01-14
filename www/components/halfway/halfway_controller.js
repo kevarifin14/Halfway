@@ -26,7 +26,7 @@ angular.module(
     };
     $ionicNavBarDelegate.showBackButton(false);
     $scope.data = {};
-    $scope.friends = Friends.query();
+    $scope.friends = Friends.query({ user_id: CurrentUser.id() });
     $scope.invitedFriends = new Set();
     var posOptions = { timeout: 10000, enableHighAccuracy: true };
     $cordovaGeolocation

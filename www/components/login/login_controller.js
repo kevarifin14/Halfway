@@ -27,7 +27,6 @@ angular.module('login_controller', [])
         window.localStorage['userAccessToken'] = data.access_token;
         window.localStorage['profilePicture'] = data.avatar;
 
-        $location.path('/app/halfway');
         $ionicLoading.hide();
       },
       function(err) {
@@ -38,6 +37,8 @@ angular.module('login_controller', [])
         });
         $ionicLoading.hide();
       }
-    );
+    ).then(function() {
+      $location.path('/app/halfway');
+    });
   }
 })

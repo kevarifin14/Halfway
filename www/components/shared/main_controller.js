@@ -9,19 +9,27 @@ angular.module('main_controller', ['camera_service'])
   $ionicLoading,
   $cordovaFile,
   $cordovaCamera,
+  $window,
   CurrentUser,
+  Friends,
   User,
-  profilePicture
+  profilePicture,
+  $timeout
 ) {
   $rootScope.profilePicture = profilePicture;
 
   $scope.logout = function() {
     $ionicLoading.show();
-    window.localStorage.clear();
-    $ionicHistory.clearCache();
-    $ionicHistory.clearHistory();
-    $ionicLoading.hide();
+    CurrentUser.clear();
+    Friends = null;
+    $timeout(function () {
+      $window.localStorage.clear();
+      $ionicHistory.clearCache();
+      $ionicHistory.clearHistory();
+      $ionicHistory.nextViewOptions({ disableBack: true, historyRoot: true });
+      $ionicLoading.hide();
+    }, 300);
     $location.path('/#/entry');
-    location.reload();
+    // location.reload();
   }
 })

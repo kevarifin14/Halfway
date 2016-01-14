@@ -6,10 +6,12 @@ angular.module('entry_controller', [])
   $ionicModal,
   UserSession,
   NewUserSession,
+  CurrentUser,
   $rootScope,
   $ionicPopup,
   $ionicLoading,
-  $ionicHistory
+  $ionicHistory,
+  Friends
 ) {
   $scope.showLogin = function() {
     $location.path('/login');
@@ -50,8 +52,9 @@ angular.module('entry_controller', [])
         window.localStorage['latitude'] = data.latitude;
         window.localStorage['userAccessToken'] = data.access_token;
         window.localStorage['profilePicture'] = data.avatar;
-
+        CurrentUser.updateUser();
         $location.path('/app/halfway');
+        $scope.data = {};
         $ionicLoading.hide();
       },
       function(err) {
@@ -62,7 +65,7 @@ angular.module('entry_controller', [])
         });
         $ionicLoading.hide();
       }
-    );
+    )
   }
 
   $scope.signupUser = function() {
@@ -79,10 +82,15 @@ angular.module('entry_controller', [])
     new_user_session.$save(
       function(data) {
         window.localStorage['userId'] = data.user_id
-        window.localStorage['userName'] = data.username
+        window.localStorage['username'] = data.username
         window.localStorage['userEmail'] = data.email
         window.localStorage['userAccessToken'] = data.access_token
+        window.localStorage['longitude'] = data.longitude;
+        window.localStorage['latitude'] = data.latitude;
+        window.localStorage['profilePicture'] = data.avatar;
+        CurrentUser.updateUser();
         $location.path('/app/halfway');
+        $scope.data = {};
         $ionicLoading.hide();
       },
       function(err) {

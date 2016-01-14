@@ -32,6 +32,20 @@ angular.module('current_user_service', ['ionic', 'ngResource'])
     },
     updateAvatar: function(newAvatar) {
       user.avatar = newAvatar;
+    },
+    updateUser: function() {
+      user = {
+        id: window.localStorage['userId'],
+        username: window.localStorage['username'],
+        email: window.localStorage['userEmail'],
+        access_token: window.localStorage['userAccessToken'],
+        avatar: window.localStorage['profilePicture'],
+        latitude: window.localStorage['latitude'],
+        longitude: window.localStorage['longitude'],
+      }
+    },
+    clear: function() {
+      user = null;
     }
   };
 })
