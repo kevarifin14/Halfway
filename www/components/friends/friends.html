@@ -8,6 +8,8 @@
     	<ion-list scroll="true">
       	<ion-item auto-list-divider
           class="item item-avatar"
+          auto-list-divider-value="{{ friend.username }}"
+          auto-list-divider-class="friends"
       		ng-repeat="friend in friends.friendships">
           <img src="{{ friend.avatar }}">
         	<h2>{{ friend.username }}</h2>
