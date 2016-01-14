@@ -1,5 +1,9 @@
 <ion-view view-title="Added Me">
-  <ion-content class="padding">
+  <ion-content class="padding" scroll="true">
+
+  <ion-refresher pulling-text="Pull to refresh..." on-refresh="doRefresh()">
+  </ion-refresher>
+
     <div id="no-requests" style="display: none">
       <center><h4>You don't have any friend requests :(</h4></center>
     </div>

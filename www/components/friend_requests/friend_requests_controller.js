@@ -19,6 +19,11 @@ angular.module('friend_requests_controller', ['friend_requests_service'])
     noRequests.style.display = '';
   }
 
+  $scope.doRefresh = function() {
+    $scope.friendRequests = FriendRequests.query();
+    $scope.$broadcast('scroll.refreshComplete');
+  }
+
   $scope.respondToRequest = function(user) {
     debugger;
     Friends.add({ friend_id: user.id, user_id: $scope.currentUser.id });
