@@ -1,4 +1,4 @@
-angular.module('main_controller', ['camera_service'])
+angular.module('main_controller', [])
 
 .controller ('MainCtrl', function(
   $scope,
@@ -10,9 +10,9 @@ angular.module('main_controller', ['camera_service'])
   $cordovaFile,
   $cordovaCamera,
   CurrentUser,
-  Friends,
   User,
   profilePicture,
+  Friends,
   $timeout
 ) {
   $rootScope.profilePicture = profilePicture;
@@ -20,7 +20,6 @@ angular.module('main_controller', ['camera_service'])
   $scope.logout = function() {
     $ionicLoading.show();
     CurrentUser.clear();
-    Friends = null;
     $timeout(function () {
       window.localStorage.clear();
       $ionicHistory.clearCache();
@@ -29,6 +28,5 @@ angular.module('main_controller', ['camera_service'])
       $ionicLoading.hide();
     }, 300);
     $location.path('/#/entry');
-    location.reload();
   }
 })

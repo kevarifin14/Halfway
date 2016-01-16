@@ -1,7 +1,7 @@
 angular.module('entry_controller', [])
 
 .controller ('EntryCtrl', function(
-  $ionicHistory
+  $ionicHistory,
   $ionicLoading,
   $ionicModal,
   $ionicPopup,
@@ -10,7 +10,7 @@ angular.module('entry_controller', [])
   $scope,
   CurrentUser,
   NewUserSession,
-  UserSession,
+  UserSession
 ) {
   $scope.showLogin = function() {
     $location.path('/login');

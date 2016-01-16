@@ -58,7 +58,6 @@ angular.module(
     }
 
     $scope.upload = function() {
-      console.log('here');
       document.addEventListener('deviceready', function() {
         Camera.getPicture().then(function(imageData) {
           $scope.avatar = imageData;
