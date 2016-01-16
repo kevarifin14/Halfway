@@ -1,23 +1,18 @@
 angular.module('entry_controller', [])
 
 .controller ('EntryCtrl', function(
+  CurrentUser,
+  NewUserSession,
+  UserSession,
   $ionicHistory,
   $ionicLoading,
   $ionicModal,
   $ionicPopup,
   $location,
   $rootScope,
-  $scope,
-  CurrentUser,
-  NewUserSession,
-  UserSession
+  $scope
 ) {
-  $scope.showLogin = function() {
-    $location.path('/login');
-  }
-  $scope.showSignup = function() {
-    $location.path('/signup');
-  }
+  $scope.data = {};
 
   $ionicModal.fromTemplateUrl('login.html', {
     scope: $scope,
@@ -33,17 +28,23 @@ angular.module('entry_controller', [])
     $scope.signup = modal;
   });
 
-  $scope.data = {};
+  $scope.showLogin = function() {
+    $location.path('/login');
+  }
+
+  $scope.showSignup = function() {
+    $location.path('/signup');
+  }
 
   $scope.loginUser = function() {
     $ionicLoading.show();
-    $scope.login.hide();
     var user_session = new UserSession({
-      username: $scope.data.username,
-      password: $scope.data.password,
+      username: $scope.data.loginUsername,
+      password: $scope.data.loginPassword,
     });
     user_session.$save(
       function(data) {
+        $scope.login.hide();
         window.localStorage['userId'] = data.user_id;
         window.localStorage['username'] = data.username;
         window.localStorage['userEmail'] = data.email;
@@ -52,6 +53,7 @@ angular.module('entry_controller', [])
         window.localStorage['userAccessToken'] = data.access_token;
         window.localStorage['profilePicture'] = data.avatar;
         CurrentUser.updateUser();
+        $location.path('/app/halfway');
         $scope.data = {};
         $ionicLoading.hide();
       },
@@ -63,7 +65,7 @@ angular.module('entry_controller', [])
         });
         $ionicLoading.hide();
       }
-    ).then(function() { $location.path('/app/halfway'); });
+    )
   }
 
   $scope.signupUser = function() {
@@ -71,8 +73,8 @@ angular.module('entry_controller', [])
     $scope.signup.hide();
     var new_user_session = new NewUserSession({
       email: $scope.data.email,
-      username: $scope.data.username,
-      password: $scope.data.password,
+      username: $scope.data.signupUsername,
+      password: $scope.data.signupPassword,
       password_confirmation: $scope.data.password_confirmation,
       latitude: 0,
       longitude: 0
