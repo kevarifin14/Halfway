@@ -1,51 +1,45 @@
-angular.module(
-  'halfway_controller',
-  [
-    'user_service',
-    'events_service',
-    'friends_service'
-  ]
-).controller(
+angular.module('halfway_controller', [])
+
+.controller(
   'HalfwayCtrl',
   function(
-    $scope,
-    $location,
-    User,
     CurrentUser,
     Events,
     Friends,
-    Camera,
+    User,
     $cordovaGeolocation,
     $ionicPopup,
-    $ionicNavBarDelegate,
     $ionicSideMenuDelegate,
-    $cordovaFileTransfer
+    $scope
   ) {
-    $scope.toggleLeft = function() {
-      $ionicSideMenuDelegate.toggleLeft();
-    };
-    $ionicNavBarDelegate.showBackButton(false);
     $scope.data = {};
-    $scope.friends = Friends(CurrentUser.accessToken()).query({ user_id: CurrentUser.id() });
+    $scope.friends =
+      Friends(CurrentUser.accessToken()).query({ user_id: CurrentUser.id() });
     $scope.invitedFriends = new Set();
     var posOptions = { timeout: 10000, enableHighAccuracy: true };
     $cordovaGeolocation
       .getCurrentPosition(posOptions)
       .then(function (position) {
-        localStorage['latitude']  = position.coords.latitude
-        localStorage['longitude'] = position.coords.longitude
+        localStorage['latitude']  = position.coords.latitude;
+        localStorage['longitude'] = position.coords.longitude;
+        User.update(
+          {
+            id: window.localStorage['userId'],
+            user: {
+              latitude: position.coords.latitude,
+              longitude: position.coords.longitude,
+            }
+          }
+        );
+        CurrentUser.updateUser();
       }, function(err) {
         // error
       });
-    User.update(
-      {
-        id: window.localStorage['userId'],
-        user: {
-          latitude: localStorage['latitude'],
-          longitude: localStorage['longitude']
-        }
-      }
-    );
+
+    $scope.toggleLeft = function() {
+      $ionicSideMenuDelegate.toggleLeft();
+    };
+
     $scope.createHalfwayEvent = function() {
       var selection = document.getElementById('selectionList');
       var search_param = selection.options[selection.selectedIndex].text;
@@ -91,21 +85,6 @@ angular.module(
       } else {
         $scope.invitedFriends.add(friend.id);
       }
-    }
-
-    $scope.upload = function() {
-      document.addEventListener('deviceready', function() {
-        Camera.getPicture().then(function(imageData) {
-          $scope.avatar = imageData;
-          $cordovaFileTransfer.upload(
-            'https://halfway-db.herokuapp.com/v1/users/' + CurrentUser.id(),
-            imageData,
-            options
-          )
-        }, function (error) {
-          // error
-        });
-      });
     }
   }
 );

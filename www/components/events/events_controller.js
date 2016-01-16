@@ -12,7 +12,8 @@ angular.module('events_controller', ['current_user_service'])
   $scope.events = Events(CurrentUser.accessToken()).query({ user_id: CurrentUser.id() });
 
   $scope.doRefresh = function() {
-    $scope.events = Events.query({ user_id: CurrentUser.id() });
+    $scope.events =
+      Events(CurrentUser.accessToken()).query({ user_id: CurrentUser.id() });
     $scope.$broadcast('scroll.refreshComplete');
   }
 

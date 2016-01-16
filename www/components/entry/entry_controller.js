@@ -59,7 +59,7 @@ angular.module('entry_controller', [])
       },
       function(err) {
         var error = err['data']['error'] || err.data.join('. ')
-        var confirmPopup = $ionicPopup.alert({
+        $ionicPopup.alert({
           title: 'An error occurred',
           template: error
         });

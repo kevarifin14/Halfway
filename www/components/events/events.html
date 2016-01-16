@@ -1,11 +1,10 @@
 <ion-view view-title="Events">
   <ion-content scroll="true" padding="true">
 
-  <ion-refresher pulling-text="Pull to refresh..." on-refresh="doRefresh()">
-  </ion-refresher>
+    <ion-refresher pulling-text="Pull to refresh..." on-refresh="doRefresh()">
+    </ion-refresher>
 
-  <div class="list" style="height:100%">
-    <ion-content scroll="true">
+    <div class="list" style="height:100%">
       <ion-item auto-list-divider
         auto-list-divider-value="{{ event.date | date:'mediumDate' }}"
         auto-list-divider-function="dividerFunction"
@@ -15,8 +14,6 @@
         <h2>{{ event.description }}</h2>
           <p>{{ event.date | date:'shortTime' }}</p>
       </ion-item>
-    </ion-content>
-  </div>
-
+    </div>
   </ion-content>
 </ion-view>

@@ -1,8 +1,7 @@
 <ion-view view-title="Halfway">
   <ion-content class="padding" scroll="true">
-
-    <div class="list" style="margin-bottom:-20px; height:325px">
-      <ion-content scroll="true">
+    <ion-scroll direction="y" style="height: 60%">
+      <div class="list">
         <ion-checkbox auto-list-divider
           auto-list-divider-value="{{ friend.username }}"
           auto-list-divider-class="halfway"
@@ -10,16 +9,14 @@
           ng-click="toggleFriend(friend)">
           <h2>{{ friend.username }}</h2>
         </ion-checkbox>
-      </ion-content>
-    </div>
+      </div>
+    </ion-scroll>
 
-    <div class="list">
+    <div class="list" style="height: 30%">
       <label class="item item-input">
         <input type="text" placeholder="Let's grab coffee :D" ng-model="data.description">
       </label>
-    </div>
 
-    <div class="list">
       <label class="item item-input item-select">
         <div class="input-label">
           Category
@@ -40,26 +37,15 @@
           <option>Vietnamese</option>
         </select>
       </label>
-    </div>
-
-    <div class="row" style="margin-top:-10px;">
-      <div class="col" style="margin-left:-8px;">
-        <label class="item item-input">
-          <input type="date" ng-model="data.date">
-        </label>
-      </div>
-      <div class="col" style="margin-right:-8px;">
-        <label class="item item-input">
-          <input type="time" ng-model="data.time">
-        </label>
-      </div>
-  </div>
-
+      <label class="item item-input">
+        <input type="date" ng-model="data.date">
+        <input type="time" ng-model="data.time">
+      </label>
     <div>
-      <div class="bar bar-assertive" ng-click="createHalfwayEvent()">
+    <div class="list">
+      <div class="bar bar-calm" ng-click="createHalfwayEvent()">
         <div class="title">Halfway</div>
       </div>
     </div>
-
   </ion-content>
 </ion-view>
