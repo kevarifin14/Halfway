@@ -7,6 +7,7 @@ angular.module('events_service', ['ionic', 'ngResource'])
     {
       query: {
         method: 'GET',
+        cache: false,
         headers: { 'Authorization': window.localStorage['userAccessToken'] }
       },
       create: {

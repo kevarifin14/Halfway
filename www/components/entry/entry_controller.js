@@ -1,17 +1,16 @@
 angular.module('entry_controller', [])
 
 .controller ('EntryCtrl', function(
-  $scope,
-  $location,
-  $ionicModal,
-  UserSession,
-  NewUserSession,
-  CurrentUser,
-  $rootScope,
-  $ionicPopup,
+  $ionicHistory
   $ionicLoading,
-  $ionicHistory,
-  Friends
+  $ionicModal,
+  $ionicPopup,
+  $location,
+  $rootScope,
+  $scope,
+  CurrentUser,
+  NewUserSession,
+  UserSession,
 ) {
   $scope.showLogin = function() {
     $location.path('/login');
@@ -53,7 +52,6 @@ angular.module('entry_controller', [])
         window.localStorage['userAccessToken'] = data.access_token;
         window.localStorage['profilePicture'] = data.avatar;
         CurrentUser.updateUser();
-        $location.path('/app/halfway');
         $scope.data = {};
         $ionicLoading.hide();
       },
@@ -65,7 +63,7 @@ angular.module('entry_controller', [])
         });
         $ionicLoading.hide();
       }
-    )
+    ).then(function() { $location.path('/app/halfway'); });
   }
 
   $scope.signupUser = function() {
