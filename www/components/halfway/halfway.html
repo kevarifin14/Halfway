@@ -12,8 +12,11 @@
       </div>
     </ion-scroll>
 
-    <div class="list" style="height: 30%">
+    <div class="list" style="height: 35%">
       <label class="item item-input">
+        <div class="input-label">
+          Description
+        </div>
         <input type="text" placeholder="Let's grab coffee :D" ng-model="data.description">
       </label>
 
@@ -38,7 +41,15 @@
         </select>
       </label>
       <label class="item item-input">
+        <div class="input-label">
+          Date
+        </div>
         <input type="date" ng-model="data.date">
+      </label>
+      <label class="item item-input">
+        <div class="input-label">
+          Time
+        </div>
         <input type="time" ng-model="data.time">
       </label>
     <div>
