@@ -11,7 +11,7 @@ angular.module('friends_controller', ['friends_service'])
     $ionicPopup,
     CurrentUser
   ) {
-  $scope.friends = Friends.query({ user_id: CurrentUser.id() });
+  $scope.friends = Friends(CurrentUser.accessToken()).query({ user_id: CurrentUser.id() });
   $scope.allUsers = AllUsers.query();
   $scope.current_user = CurrentUser.user();
 
@@ -43,7 +43,7 @@ angular.module('friends_controller', ['friends_service'])
   }
 
   $scope.doRefresh = function() {
-    $scope.friends = Friends.query({ user_id: CurrentUser.id() });
+    $scope.friends = Friends(CurrentUser.accessToken()).query({ user_id: CurrentUser.id() });
     $scope.$broadcast('scroll.refreshComplete');
   }
 
