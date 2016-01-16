@@ -4,6 +4,8 @@
     <div class="list" style="margin-bottom:-20px; height:325px">
       <ion-content scroll="true">
         <ion-checkbox auto-list-divider
+          auto-list-divider-value="{{ friend.username }}"
+          auto-list-divider-class="halfway"
           ng-repeat="friend in friends.friendships"
           ng-click="toggleFriend(friend)">
           <h2>{{ friend.username }}</h2>
