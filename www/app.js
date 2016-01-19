@@ -90,6 +90,15 @@ angular.module(
 
   .state('app.friends', {
     url: '/friends',
+    resolve: {
+      friends: function(Friends, CurrentUser) {
+        return Friends(CurrentUser.accessToken())
+          .query({ user_id: CurrentUser.id() })
+          .$promise.then(function(friends) {
+            return friends;
+          });
+      }
+    },
     views: {
       'menuContent': {
         templateUrl: 'components/friends/friends.html',
@@ -100,6 +109,15 @@ angular.module(
 
   .state('app.addFriends', {
     url: '/add_friends',
+    resolve: {
+      friends: function(Friends, CurrentUser) {
+        return Friends(CurrentUser.accessToken())
+          .query({ user_id: CurrentUser.id() })
+          .$promise.then(function(friends) {
+            return friends;
+          });
+      }
+    },
     views: {
       'menuContent': {
         templateUrl: 'components/friends/add_friends.html',

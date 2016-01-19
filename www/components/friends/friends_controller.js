@@ -9,11 +9,17 @@ angular.module('friends_controller', ['friends_service'])
     Friends,
     AllUsers,
     $ionicPopup,
-    CurrentUser
+    CurrentUser,
+    friends
   ) {
-  $scope.friends = Friends(CurrentUser.accessToken()).query({ user_id: CurrentUser.id() });
+  $scope.friends = friends;
   $scope.allUsers = AllUsers.query();
   $scope.current_user = CurrentUser.user();
+  $scope.friendsSet = new Set(friends.friendships.map(friendId));
+
+  function friendId(friend) {
+    return friend.id;
+  }
 
   $scope.openSearch = function() {
     $ionicFilterBar.show({
@@ -58,9 +64,21 @@ angular.module('friends_controller', ['friends_service'])
   }
 
   $scope.addFriend = function(friend) {
-    Friends.add({ friend_id: friend.id, user_id: $scope.current_user.id })
-    $ionicPopup.alert({
-        title: 'Request sent to ' + friend.username,
-    });
+    if ($scope.userAdded(friend)) {
+      Friends(CurrentUser.accessToken())
+        .add({ friend_id: friend.id, user_id: $scope.current_user.id })
+      $ionicPopup.alert({
+          title: 'Request sent to ' + friend.username,
+      });
+    } else {
+      $ionicPopup.alert({
+        title: 'You have already added ' + friend.username,
+      });
+
+    }
+  }
+
+  $scope.userAdded = function(user) {
+    return !$scope.friendsSet.has(user.id);
   }
 });

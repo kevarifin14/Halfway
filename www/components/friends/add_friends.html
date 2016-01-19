@@ -1,17 +1,18 @@
-<ion-view view-title="My Friends">
+<ion-view view-title="Add Friends">
   <ion-nav-buttons side="right">
     <button class="button button-icon button-clear ion-search" ng-click="openSearch()">
     </button>
   </ion-nav-buttons>
 
-  <ion-content class="padding">
+  <ion-content>
     <div id="description">
       <center><h4>Find friends by their username.</h4>
       <h4>Your username is <b>{{ current_user.username }}</b></h4></center>
     </div>
     <div style="display: none" id="user-search">
-      <ion-item ng-repeat="user in allUsers.users" ng-click="addFriend(user)">
+      <ion-item class="item item-icon-right" ng-repeat="user in allUsers.users" ng-click="addFriend(user)">
         <h2>{{ user.username }}</h2>
+        <i class="icon ion-checkmark-round" ng-hide="userAdded(user)"></i>
       </ion-item>
     </div>
   </ion-content>
