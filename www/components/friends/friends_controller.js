@@ -17,7 +17,9 @@ angular.module('friends_controller', ['friends_service'])
 
   $scope.openSearch = function() {
     $ionicFilterBar.show({
-        items: $scope.allUsers.users,
+        items: $scope.allUsers.users.filter(function(user) {
+          return user.id != CurrentUser.id();
+        }),
         update: function (filteredUsers) {
           if (document.getElementsByClassName("filter-bar-search")[0].value == '') {
             var userSearch = document.getElementById('user-search');
