@@ -21,14 +21,22 @@ angular.module('friends_controller', ['friends_service'])
           return user.id != CurrentUser.id();
         }),
         update: function (filteredUsers) {
-          if (document.getElementsByClassName("filter-bar-search")[0].value == '') {
+          var searchQuery = document.getElementsByClassName("filter-bar-search")[0].value;
+          if (searchQuery == '') {
             var userSearch = document.getElementById('user-search');
             userSearch.style.display = 'none';
           } else {
             var userSearch = document.getElementById('user-search');
             userSearch.style.display = '';
           }
-          $scope.allUsers.users = filteredUsers;
+          var correctUserArray = [];
+          for (i = 0; i < filteredUsers.length; i++) {
+            var user = filteredUsers[i];
+            if (user.username == searchQuery) {
+              correctUserArray.push(user);
+            }
+          }
+          $scope.allUsers.users = correctUserArray;
         },
         done: function() {
           var description = document.getElementById('description');
