@@ -4,6 +4,12 @@
     <ion-refresher pulling-text="Pull to refresh..." on-refresh="doRefresh()">
     </ion-refresher>
 
+    <div ng-show="!events.events.length">
+      <center>
+        <h4>You have no events yet! Aren't you bored?</h4>
+      </center>
+    </div>
+
     <div class="list" style="height:100%">
       <ion-item auto-list-divider
         auto-list-divider-value="{{ event.date | date:'mediumDate' }}"
