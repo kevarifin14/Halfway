@@ -1,14 +1,19 @@
 <ion-view view-title="Halfway">
   <ion-content scroll="true">
 
-  <div ng-show="!friends.friendships.length">
-    <center>
-      <h4>You have no friends yet. :(</h4>
-      <h4>Find them in <b>Add Friends</b> in the sidebar!</h4>
-    </center>
-  </div>
+    <div ng-show="!friends.friendships.length">
+      <center>
+        <h4>You have no friends yet. :(</h4>
+        <h4>Find them in <b>Add Friends</b> in the sidebar!</h4>
+      </center>
+    </div>
+
+    <ion-scroll ng-show="!friends.friendships.length" direction="y" style="height: 45%">
+      <div class="list">
+      </div>
+    </ion-scroll>
   
-    <ion-scroll direction="y" style="height: 55%">
+    <ion-scroll ng-show="friends.friendships.length" direction="y" style="height: 55%">
       <div class="list">
         <ion-checkbox auto-list-divider
           auto-list-divider-value="{{ friend.username }}"
@@ -19,6 +24,7 @@
         </ion-checkbox>
       </div>
     </ion-scroll>
+  
 
     <div class="list" style="height: 35%">
       <label class="item item-input">
