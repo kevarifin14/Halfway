@@ -76,6 +76,7 @@ angular.module('entry_controller', [])
       username: $scope.data.signupUsername,
       password: $scope.data.signupPassword,
       password_confirmation: $scope.data.password_confirmation,
+      phone_number: $scope.data.phone_number,
       latitude: 0,
       longitude: 0
     });

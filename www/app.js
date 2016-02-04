@@ -32,7 +32,6 @@ angular.module(
     'login_service',
     'main_controller',
     'profile_controller',
-    'signup_controller',
     'signup_service',
     'user_service',
     'all_users_service',
