@@ -34,6 +34,8 @@ angular.module(
     'profile_controller',
     'signup_service',
     'user_service',
+    'verification_controller',
+    'verification_service',
     'all_users_service',
     'ngResource',
     'ngCordova'
@@ -193,6 +195,12 @@ angular.module(
     url: '/entry',
     templateUrl: 'components/entry/entry.html',
     controller: 'EntryCtrl'
+  })
+
+  .state('verification', {
+    url: '/verification',
+    templateUrl: 'components/phone_number/verification.html',
+    controller: 'VerificationCtrl'
   });
 
   // if none of the above states are matched, use this as the fallback

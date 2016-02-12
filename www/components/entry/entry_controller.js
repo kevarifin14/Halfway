@@ -1,6 +1,6 @@
 angular.module('entry_controller', [])
 
-.controller ('EntryCtrl', function(
+.controller('EntryCtrl', function(
   CurrentUser,
   NewUserSession,
   UserSession,
@@ -89,8 +89,9 @@ angular.module('entry_controller', [])
         window.localStorage['longitude'] = data.longitude;
         window.localStorage['latitude'] = data.latitude;
         window.localStorage['profilePicture'] = data.avatar;
+        window.localStorage['phoneNumber'] = $scope.data.phone_number;
         CurrentUser.updateUser();
-        $location.path('/app/halfway');
+        $location.path('/verification');
         $scope.data = {};
         $ionicLoading.hide();
       },
