@@ -96,7 +96,10 @@ angular.module('halfway_controller', [])
     document.addEventListener("deviceready", function() {
       $scope.getContactList();
       Users.query().$promise.then(function(users) {
-        console.log(users.users);
+        $scope.users = users.users;
+        for (i = 0; i < $scope.users.length; i++) {
+          user = $scope.users[i];
+        };
       });
     }, false);
   }
