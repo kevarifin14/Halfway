@@ -95,11 +95,26 @@ angular.module('halfway_controller', [])
 
     document.addEventListener("deviceready", function() {
       $scope.getContactList();
+      var updatedContacts = []
       Users.query().$promise.then(function(users) {
         $scope.users = users.users;
         for (i = 0; i < $scope.users.length; i++) {
           user = $scope.users[i];
+          var contactSeen = 0;
+          for (j = 0; j < $scope.contacts.length; j++) {
+            contact = $scope.contacts[j];
+            if (contact.phoneNumber == user.phoneNumber) {
+              contactSeen = 1;
+            }
+            if (contactSeen == 1) {
+              break;
+            }
+          }
+          if (contactSeen == 1) {
+            updatedContacts.push(user);
+          }
         };
+        $scope.updatedContacts = updatedContacts;
       });
     }, false);
   }
