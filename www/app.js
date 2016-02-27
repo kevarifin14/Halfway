@@ -14,31 +14,26 @@ angular.module(
     'tabSlideBox',
     'tabSlideBoxScrollExtension',
     'ionic.ion.autoListDivider',
-    'account_controller',
     'entry_controller',
     'events_controller',
     'events_service',
     'event_controller',
     'event_service',
-    'camera_service',
-    'friends_service',
-    'friends_controller',
-    'friend_requests_service',
-    'friend_requests_controller',
     'halfway_controller',
     'invitations_service',
     'invitation_service',
     'login_controller',
     'login_service',
+    'logout_service',
     'main_controller',
-    'profile_controller',
+    'settings_controller',
     'signup_service',
     'user_service',
     'verification_controller',
     'verification_service',
-    'all_users_service',
-    'ngResource',
-    'ngCordova'
+    'users_service',
+    'ngCordova',
+    'ngResource'
   ])
 
 .run(function($ionicPlatform) {
@@ -46,9 +41,8 @@ angular.module(
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
     if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
-      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(false);
       cordova.plugins.Keyboard.disableScroll(true);
-
     }
     if (window.StatusBar) {
       // org.apache.cordova.statusbar required
@@ -78,69 +72,16 @@ angular.module(
   .state('app', {
     url: '/app',
     abstract: true,
-    resolve: {
-      profilePicture: function(CurrentUser) {
-        return CurrentUser.avatar();
-      }
-    },
-    templateUrl: 'components/shared/menu.html',
+    templateUrl: 'components/shared/content.html',
     controller: 'MainCtrl'
   })
 
   .state('app.halfway', {
     url: '/halfway',
     views: {
-      'menuContent': {
+      'content': {
         templateUrl: 'components/shared/tabs.html',
         controller: 'HalfwayCtrl'
-      }
-    }
-  })
-
-  .state('app.friends', {
-    url: '/friends',
-    resolve: {
-      friends: function(Friends, CurrentUser) {
-        return Friends(CurrentUser.accessToken())
-          .query({ user_id: CurrentUser.id() })
-          .$promise.then(function(friends) {
-            return friends;
-          });
-      }
-    },
-    views: {
-      'menuContent': {
-        templateUrl: 'components/friends/friends.html',
-        controller: 'FriendsCtrl'
-      }
-    }
-  })
-
-  .state('app.addFriends', {
-    url: '/add_friends',
-    resolve: {
-      friends: function(Friends, CurrentUser) {
-        return Friends(CurrentUser.accessToken())
-          .query({ user_id: CurrentUser.id() })
-          .$promise.then(function(friends) {
-            return friends;
-          });
-      }
-    },
-    views: {
-      'menuContent': {
-        templateUrl: 'components/friends/add_friends.html',
-        controller: 'FriendsCtrl'
-      }
-    }
-  })
-
-  .state('app.friendRequests', {
-    url: '/requests',
-    views: {
-      'menuContent': {
-        templateUrl: 'components/friend_requests/friend_requests.html',
-        controller: 'FriendRequestsCtrl'
       }
     }
   })
@@ -162,21 +103,17 @@ angular.module(
       }
     },
     views: {
-      'menuContent': {
-        templateUrl: 'components/event/event.html',
+      'content': {
+        templateUrl: 'components/events/event.html',
         controller: 'EventCtrl'
       }
     }
   })
 
-  .state('app.account', {
-    url: '/account',
-    views: {
-      'menuContent': {
-        templateUrl: 'components/account/account.html',
-        controller: 'AccountCtrl'
-      }
-    }
+  .state('entry', {
+    url: '/entry',
+    templateUrl: 'components/entry/entry.html',
+    controller: 'EntryCtrl'
   })
 
   .state('login', {
@@ -191,15 +128,9 @@ angular.module(
     controller: 'SignupCtrl'
   })
 
-  .state('entry', {
-    url: '/entry',
-    templateUrl: 'components/entry/entry.html',
-    controller: 'EntryCtrl'
-  })
-
   .state('verification', {
     url: '/verification',
-    templateUrl: 'components/phone_number/verification.html',
+    templateUrl: 'components/verification/verification.html',
     controller: 'VerificationCtrl'
   });
 

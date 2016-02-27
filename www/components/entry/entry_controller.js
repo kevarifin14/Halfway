@@ -2,8 +2,8 @@ angular.module('entry_controller', [])
 
 .controller('EntryCtrl', function(
   CurrentUser,
-  NewUserSession,
-  UserSession,
+  SignupService,
+  LoginService,
   $ionicHistory,
   $ionicLoading,
   $ionicModal,
@@ -28,32 +28,28 @@ angular.module('entry_controller', [])
     $scope.signup = modal;
   });
 
-  $scope.showLogin = function() {
-    $location.path('/login');
-  }
-
-  $scope.showSignup = function() {
-    $location.path('/signup');
-  }
-
   $scope.loginUser = function() {
     $ionicLoading.show();
-    var user_session = new UserSession({
-      username: $scope.data.loginUsername,
-      password: $scope.data.loginPassword,
+    $scope.login.hide();
+    var login_service = new LoginService({
+      user: {
+        phone_number: $scope.data.loginPhoneNumber,
+      }
     });
-    user_session.$save(
+    login_service.$save(
       function(data) {
-        $scope.login.hide();
-        window.localStorage['userId'] = data.user_id;
-        window.localStorage['username'] = data.username;
-        window.localStorage['userEmail'] = data.email;
-        window.localStorage['longitude'] = data.longitude;
-        window.localStorage['latitude'] = data.latitude;
-        window.localStorage['userAccessToken'] = data.access_token;
-        window.localStorage['profilePicture'] = data.avatar;
+        user = data.user
+        window.localStorage['userId'] = user.id;
+        window.localStorage['longitude'] = user.longitude;
+        window.localStorage['latitude'] = user.latitude;
+        window.localStorage['userAccessToken'] = user.access_token;
+        window.localStorage['phoneNumber'] = user.phone_number;
+        window.localStorage['verified'] = user.verified;
         CurrentUser.updateUser();
-        $location.path('/app/halfway');
+        $ionicHistory.nextViewOptions({
+           disableBack: true
+        });
+        $location.path('/verification');
         $scope.data = {};
         $ionicLoading.hide();
       },
@@ -71,26 +67,26 @@ angular.module('entry_controller', [])
   $scope.signupUser = function() {
     $ionicLoading.show();
     $scope.signup.hide();
-    var new_user_session = new NewUserSession({
-      email: $scope.data.email,
-      username: $scope.data.signupUsername,
-      password: $scope.data.signupPassword,
-      password_confirmation: $scope.data.password_confirmation,
-      phone_number: $scope.data.phone_number,
-      latitude: 0,
-      longitude: 0
+    var signup_service = new SignupService({
+      user: {
+        phone_number: $scope.data.signupPhoneNumber,
+        latitude: 0,
+        longitude: 0
+      }
     });
-    new_user_session.$save(
+    signup_service.$save(
       function(data) {
-        window.localStorage['userId'] = data.user_id
-        window.localStorage['username'] = data.username
-        window.localStorage['userEmail'] = data.email
-        window.localStorage['userAccessToken'] = data.access_token
-        window.localStorage['longitude'] = data.longitude;
-        window.localStorage['latitude'] = data.latitude;
-        window.localStorage['profilePicture'] = data.avatar;
-        window.localStorage['phoneNumber'] = $scope.data.phone_number;
+        user = data.user
+        window.localStorage['userId'] = user.id
+        window.localStorage['userAccessToken'] = user.access_token
+        window.localStorage['longitude'] = user.longitude;
+        window.localStorage['latitude'] = user.latitude;
+        window.localStorage['phoneNumber'] = user.phone_number;
+        window.localStorage['verified'] = user.verified;
         CurrentUser.updateUser();
+        $ionicHistory.nextViewOptions({
+           disableBack: true
+        });
         $location.path('/verification');
         $scope.data = {};
         $ionicLoading.hide();

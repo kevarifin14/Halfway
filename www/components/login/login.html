@@ -6,15 +6,10 @@
   <form name="loginForm" novalidate>
     <div class="list">
       <label class="item item-input item-floating-label">
-        <span class="input-label">Username</span>
-        <input type="text" placeholder="Username" ng-model="data.loginUsername" required>
-      </label>
-      <label class="item item-input item-floating-label">
-        <span class="input-label">Password</span>
-        <input type="password" placeholder="Password" ng-model="data.loginPassword" ng-minlength="8" required>
+        <span class="input-label">Phone Number</span>
+        <input type="tel" placeholder="Phone Number" ng-model="data.loginPhoneNumber" required>
       </label>
     </div>
-
     <div class="padding">
       <button
         ng-disabled="loginForm.$invalid"

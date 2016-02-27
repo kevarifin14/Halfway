@@ -5,17 +5,19 @@ angular.module('halfway_controller', [])
   function(
     CurrentUser,
     Events,
-    Friends,
     User,
+    Users,
+    $cordovaContacts,
     $cordovaGeolocation,
+    $ionicPlatform,
     $ionicPopup,
     $ionicSideMenuDelegate,
     $scope
   ) {
     $scope.data = {};
-    $scope.friends =
-      Friends(CurrentUser.accessToken()).query({ user_id: CurrentUser.id() });
-    $scope.invitedFriends = new Set();
+    $scope.contacts = {};
+
+    // $scope.invitedFriends = new Set();
     var posOptions = { timeout: 10000, enableHighAccuracy: true };
     $cordovaGeolocation
       .getCurrentPosition(posOptions)
@@ -35,10 +37,6 @@ angular.module('halfway_controller', [])
       }, function(err) {
         // error
       });
-
-    $scope.toggleLeft = function() {
-      $ionicSideMenuDelegate.toggleLeft();
-    };
 
     $scope.createHalfwayEvent = function() {
       var selection = document.getElementById('selectionList');
@@ -86,5 +84,20 @@ angular.module('halfway_controller', [])
         $scope.invitedFriends.add(friend.id);
       }
     }
+
+    $scope.getContactList = function() {
+      $cordovaContacts.find({multiple: true}).then(function(result) {
+          $scope.contacts = result;
+      }, function(error) {
+          console.log("ERROR: " + error);
+      });
+    }
+
+    document.addEventListener("deviceready", function() {
+      $scope.getContactList();
+      Users.query().$promise.then(function(users) {
+        console.log(users.users);
+      });
+    }, false);
   }
 );

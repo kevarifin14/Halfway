@@ -1,37 +1,40 @@
 <ion-view view-title="Halfway">
-  <ion-content scroll="true">
+  <ion-content scroll="false">
 
-    <div ng-show="!friends.friendships.length">
+<!--     <div ng-show="!friends.friendships.length">
       <center>
         <h4>You have no friends yet. :(</h4>
-        <h4>Find them in <b>Add Friends</b> in the sidebar!</h4>
       </center>
+      <h1>{{ friend.username}}</h1>
     </div>
-
-    <ion-scroll ng-show="!friends.friendships.length" direction="y" style="height: 40%">
+ -->
+<!--     <ion-scroll ng-show="!friends.friendships.length" direction="y" style="height: 40%">
       <div class="list">
       </div>
     </ion-scroll>
-  
-    <ion-scroll ng-show="friends.friendships.length" direction="y" style="height: 55%">
-      <div class="list">
-        <ion-checkbox auto-list-divider
-          auto-list-divider-value="{{ friend.username }}"
+ -->
+
+<!--           auto-list-divider-value="{{ friend.username }}"
           auto-list-divider-class="halfway"
-          ng-repeat="friend in friends.friendships"
-          ng-click="toggleFriend(friend)">
-          <h2>{{ friend.username }}</h2>
+          ng-click="toggleFriend(friend)"
+ -->
+    <ion-scroll direction="y" style="height: 55%">
+      <div class="list">
+        <ion-checkbox collection-repeat="contact in contacts">
+          <h2>{{ contact.name.givenName }}</h2>
         </ion-checkbox>
       </div>
     </ion-scroll>
-  
+
+    {{ users.users }}
+
 
     <div class="list" style="height: 35%">
       <label class="item item-input">
         <div class="input-label">
           Description
         </div>
-        <input type="text" placeholder="Let's grab coffee :D" ng-model="data.description">
+        <input type="text" keyboard-attach placeholder="Let's grab coffee :D" ng-model="data.description">
       </label>
 
       <label class="item item-input item-select">
@@ -58,13 +61,13 @@
         <div class="input-label">
           Date
         </div>
-        <input type="date" ng-model="data.date">
+        <input type="date" keyboard-attach ng-model="data.date">
       </label>
       <label class="item item-input">
         <div class="input-label">
           Time
         </div>
-        <input type="time" ng-model="data.time">
+        <input type="time" keyboard-attach ng-model="data.time">
       </label>
     <div>
     <div class="list">

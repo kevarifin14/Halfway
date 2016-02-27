@@ -3,11 +3,11 @@ angular.module('events_controller', ['current_user_service'])
 .controller(
   'EventsCtrl',
   function(
-    $scope,
-    $location,
+    CurrentUser,
     Event,
     Events,
-    CurrentUser
+    $location,
+    $scope
   ) {
   $scope.events = Events(CurrentUser.accessToken()).query({ user_id: CurrentUser.id() });
 

@@ -1,9 +1,9 @@
-angular.module('all_users_service', ['ionic', 'ngResource'])
+angular.module('users_service', ['ionic', 'ngResource'])
 
-.factory('AllUsers', function($resource) {
+.factory('Users', function($resource) {
   return $resource(
     'https://halfway-db.herokuapp.com/v1/users',
-    { },
+    {},
     {
       query: {
         method: 'GET',
