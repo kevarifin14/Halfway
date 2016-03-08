@@ -1,33 +1,17 @@
 <ion-view view-title="Halfway">
   <ion-content scroll="false">
-
-<!--     <div ng-show="!friends.friendships.length">
-      <center>
-        <h4>You have no friends yet. :(</h4>
-      </center>
-      <h1>{{ friend.username}}</h1>
-    </div>
- -->
-<!--     <ion-scroll ng-show="!friends.friendships.length" direction="y" style="height: 40%">
-      <div class="list">
-      </div>
-    </ion-scroll>
- -->
-
-<!--           auto-list-divider-value="{{ friend.username }}"
-          auto-list-divider-class="halfway"
-          ng-click="toggleFriend(friend)"
- -->
     <ion-scroll direction="y" style="height: 55%">
       <div class="list">
-<!--         <ion-checkbox collection-repeat="contact in contacts">
+        <ion-checkbox
+          auto-list-divider
+          ng-repeat="contact in updatedContacts"
+          ng-click="toggleFriend(contact)"
+          auto-list-divider-value="{{ contact.name.givenName }}"
+          auto-list-divider-class="halfway">
           <h2>{{ contact.name.givenName }}</h2>
         </ion-checkbox>
- -->      </div>
+      </div>
     </ion-scroll>
-
-    {{ users.users }}
-
 
     <div class="list" style="height: 35%">
       <label class="item item-input">

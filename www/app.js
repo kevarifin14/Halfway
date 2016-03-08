@@ -29,7 +29,6 @@ angular.module(
     'settings_controller',
     'signup_service',
     'user_service',
-    'verification_controller',
     'verification_service',
     'users_service',
     'ngCordova',
@@ -76,6 +75,16 @@ angular.module(
     controller: 'MainCtrl'
   })
 
+  .state('app.entry', {
+    url: '/entry',
+    views: {
+      'content': {
+        templateUrl: 'components/entry/entry.html',
+        controller: 'EntryCtrl'
+      }
+    }
+  })
+
   .state('app.halfway', {
     url: '/halfway',
     views: {
@@ -108,32 +117,7 @@ angular.module(
         controller: 'EventCtrl'
       }
     }
-  })
-
-  .state('entry', {
-    url: '/entry',
-    templateUrl: 'components/entry/entry.html',
-    controller: 'EntryCtrl'
-  })
-
-  .state('login', {
-    url: '/login',
-    templateUrl: 'components/login/login.html',
-    controller: 'LoginCtrl'
-  })
-
-  .state('signup', {
-    url: '/signup',
-    templateUrl: 'components/signup/signup.html',
-    controller: 'SignupCtrl'
-  })
-
-  .state('verification', {
-    url: '/verification',
-    templateUrl: 'components/verification/verification.html',
-    controller: 'VerificationCtrl'
   });
 
-  // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/entry');
+  $urlRouterProvider.otherwise('/app/entry');
 });
