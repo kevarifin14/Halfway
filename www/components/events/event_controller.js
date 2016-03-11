@@ -1,4 +1,4 @@
-angular.module('event_controller', ['current_user_service'])
+angular.module('event_controller', [])
 
 .controller(
   'EventCtrl',

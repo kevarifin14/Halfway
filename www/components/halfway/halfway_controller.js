@@ -18,11 +18,14 @@ angular.module('halfway_controller', [])
     $ionicSideMenuDelegate,
     $location,
     $scope,
-    $timeout
+    $timeout,
+    friends
   ) {
     $scope.data = {};
-    $scope.contacts = [];
+    $scope.contacts = friends;
     $scope.invitedFriends = [];
+    $scope.phoneNumbers = {};
+
 
     $ionicModal.fromTemplateUrl('settings.html', {
       scope: $scope,
@@ -79,14 +82,14 @@ angular.module('halfway_controller', [])
               }
             }
           );
-          var confirmPopup = $ionicPopup.alert({
+          $ionicPopup.alert({
             title: 'Event created :)',
           });
         }
       } else {
-        var descriptionFailurePopup = $ionicPopup.alert({
+        $ionicPopup.alert({
           title: 'You forgot a description!',
-        })
+        });
       }
     }
 
@@ -97,14 +100,6 @@ angular.module('halfway_controller', [])
       } else {
         $scope.invitedFriends.push(friend.id);
       }
-    }
-
-    $scope.getContactList = function() {
-      $cordovaContacts.find({multiple: true}).then(function(result) {
-          $scope.contacts = result;
-      }, function(error) {
-          console.log("ERROR: " + error);
-      });
     }
 
     $scope.logout = function() {
@@ -120,31 +115,6 @@ angular.module('halfway_controller', [])
         $ionicLoading.hide();
       }, 300);
       $location.path('/#/entry');
-    }
-
-    document.addEventListener("deviceready", function() {
-      $scope.getContactList();
-      var updatedContacts = []
-      $scope.phoneNumbers = []
-      Users.query().$promise.then(function(users) {
-        $scope.users = users.users;
-        for (i = 0; i < $scope.users.length; i++) {
-          user = $scope.users[i];
-          var contactSeen = 0;
-          for (j = 0; j < $scope.contacts.length; j++) {
-            contact = $scope.contacts[j];
-            contactPhoneNumber = formatPhoneNumber(contact.phoneNumbers[0].value)
-            if (contactPhoneNumber == user.phone_number && CurrentUser.id() != user.id) {
-              updatedContacts.push(contact);
-            }
-          }
-        };
-        $scope.updatedContacts = updatedContacts;
-      });
-    }, false);
-
-    function formatPhoneNumber(phoneNumber) {
-      return phoneNumber.replace (/[^\d]/g, "").replace (/^.*(\d{10})$/, "$1");
     }
   }
 );

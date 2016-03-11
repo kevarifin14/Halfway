@@ -14,6 +14,7 @@ angular.module(
     'tabSlideBox',
     'tabSlideBoxScrollExtension',
     'ionic.ion.autoListDivider',
+    'contacts_service',
     'entry_controller',
     'events_controller',
     'events_service',
@@ -87,6 +88,29 @@ angular.module(
 
   .state('app.halfway', {
     url: '/halfway',
+    resolve: {
+      friends: function(Contacts, Users, CurrentUser) {
+        return Contacts.then(function(contacts) {
+          var friends = [];
+          return Users.query().$promise.then(function(users) {
+            users = users.users
+            for (var i = 0; i < users.length; i++) {
+              var user = users[i];
+              if (CurrentUser.id() != user.id) {
+                for (var j = 0; j < contacts.length; j++) {
+                  var contact = contacts[j];
+                  contactPhoneNumber = contact.phoneNumbers[0].value.replace(/[^\d]/g, "").replace(/^.*(\d{10})$/, "$1");
+                  if (contactPhoneNumber == user.phone_number) {
+                    friends.push(contact);
+                  }
+                }
+              }
+            }
+            return friends;
+          });
+        });
+      }
+    },
     views: {
       'content': {
         templateUrl: 'components/shared/tabs.html',
@@ -108,7 +132,7 @@ angular.module(
         return Invitations.query({ event_id: $stateParams.eventId })
           .$promise.then(function(invitations) {
             return invitations;
-          })
+          });
       }
     },
     views: {

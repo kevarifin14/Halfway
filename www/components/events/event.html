@@ -1,10 +1,13 @@
 <ion-view view-title="{{ event.event.description }}" hide-nav-bar="false">
+  <ion-nav-bar class="bar-calm">
+    <ion-nav-back-button>
+    </ion-nav-back-button>
+  </ion-nav-bar>
   <ion-content>
     <ion-tabs class="tabs-calm tabs-icon-only tabs-striped">
       <ion-tab icon="ion-calendar">
         <ion-content>
           <div class="item item-thumbnail-left">
-            <img ng-src="{{ event.image }}">
             <h2>{{ event.meeting_point}}</h2>
               {{ event.address }} <br>
               {{ event.date | date:'short' }}
@@ -15,8 +18,7 @@
           <div class="list">
             <ion-scroll style="height: 200px;">
               <ion-item ng-repeat="friend in event.friends" class="item item-avatar">
-                <img src="{{ friend.avatar }}">
-                {{ friend.username }}
+                {{ friend.phone_number }}
                 <span class="item-note">{{ message[rsvpBool[friend.id]] }}</span>
               </ion-item>
             </ion-scroll>
