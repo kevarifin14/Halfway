@@ -3,8 +3,10 @@ angular.module('halfway_controller', [])
 .controller(
   'HalfwayCtrl',
   function(
+    Contacts,
     CurrentUser,
     Events,
+    Friends,
     LogoutService,
     User,
     Users,
@@ -18,11 +20,10 @@ angular.module('halfway_controller', [])
     $ionicSideMenuDelegate,
     $location,
     $scope,
-    $timeout,
-    friends
+    $timeout
   ) {
     $scope.data = {};
-    $scope.contacts = friends;
+    $scope.friends = [];
     $scope.invitedFriends = [];
     $scope.phoneNumbers = {};
 
@@ -116,5 +117,28 @@ angular.module('halfway_controller', [])
       }, 300);
       $location.path('/#/entry');
     }
+
+    document.addEventListener('deviceready', function() {
+      Contacts.then(function(contacts) {
+        var newContacts = [];
+        for (var i = 0; i < contacts.length; i++) {
+          console.log(i);
+          contact = contacts[i];
+          attributes = {
+            'name': contact.name.formatted,
+            'phoneNumbers': contact.phoneNumbers
+          }
+          newContacts.push(attributes);
+        }
+        contacts = newContacts;
+
+        console.log(contacts);
+        Friends.create({ user_id: CurrentUser.id() }, contacts).$promise.then({
+          function(friends) {
+            $scope.friends = friends;
+          }
+        })
+      });
+    }, false)
   }
 );

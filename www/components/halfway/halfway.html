@@ -4,11 +4,11 @@
       <div class="list">
         <ion-checkbox
           auto-list-divider
-          ng-repeat="contact in contacts"
-          ng-click="toggleFriend(contact)"
-          auto-list-divider-value="{{ contact.name.givenName }}"
+          ng-repeat="friend in friends"
+          ng-click="toggleFriend(friend)"
+          auto-list-divider-value="{{ friend.name.givenName }}"
           auto-list-divider-class="halfway">
-          <h2>{{ contact.name.givenName }}</h2>
+          <h2>{{ friend.name.givenName }}</h2>
         </ion-checkbox>
       </div>
     </ion-scroll>
