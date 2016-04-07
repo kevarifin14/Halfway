@@ -1,19 +1,19 @@
 <ion-view view-title="Halfway">
   <ion-content scroll="false">
-    <ion-scroll direction="y" style="height: 55%">
+    <ion-scroll direction="y" style="height: 50%">
       <div class="list">
         <ion-checkbox
           auto-list-divider
           ng-repeat="friend in friends"
           ng-click="toggleFriend(friend)"
-          auto-list-divider-value="{{ friend.name.givenName }}"
+          auto-list-divider-value="{{ friend.name }}"
           auto-list-divider-class="halfway">
-          <h2>{{ friend.name.givenName }}</h2>
+          <h2>{{ friend.name }}</h2>
         </ion-checkbox>
       </div>
     </ion-scroll>
 
-    <div class="list" style="height: 35%">
+    <div class="list" style="height: 40%">
       <label class="item item-input">
         <div class="input-label">
           Description

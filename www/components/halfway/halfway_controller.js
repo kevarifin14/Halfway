@@ -3,7 +3,6 @@ angular.module('halfway_controller', [])
 .controller(
   'HalfwayCtrl',
   function(
-    Contacts,
     CurrentUser,
     Events,
     Friends,
@@ -97,7 +96,7 @@ angular.module('halfway_controller', [])
     $scope.toggleFriend = function(friend) {
       if ($scope.invitedFriends.includes(friend.id)) {
         index = $scope.invitedFriends.indexOf(friend.id);
-        $scope.invitedFriends.myArray.splice(index, 1);
+        $scope.invitedFriends.splice(index, 1);
       } else {
         $scope.invitedFriends.push(friend.id);
       }
@@ -119,10 +118,14 @@ angular.module('halfway_controller', [])
     }
 
     document.addEventListener('deviceready', function() {
-      Contacts.then(function(contacts) {
+      $cordovaContacts.find(
+        {
+          multiple: true,
+          desiredFields: ['name', 'phoneNumbers']
+        }
+      ).then(function(contacts) {
         var newContacts = [];
         for (var i = 0; i < contacts.length; i++) {
-          console.log(i);
           contact = contacts[i];
           attributes = {
             'name': contact.name.formatted,
@@ -131,13 +134,16 @@ angular.module('halfway_controller', [])
           newContacts.push(attributes);
         }
         contacts = newContacts;
-
-        console.log(contacts);
-        Friends.create({ user_id: CurrentUser.id() }, contacts).$promise.then({
-          function(friends) {
-            $scope.friends = friends;
+        numOfContacts = contacts.length
+        Friends.create({ user_id: CurrentUser.id() }, { contacts: contacts}).$promise.then(
+          function(data) {
+            $scope.friends = data.friends;
+            console.log($scope.friends)
+          },
+          function(err) {
+            console.log(err)
           }
-        })
+        )
       });
     }, false)
   }
