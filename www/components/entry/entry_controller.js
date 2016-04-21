@@ -96,7 +96,7 @@ angular.module('entry_controller', [])
         { text: 'Cancel' },
         {
           text: '<b>Verify</b>',
-          type: 'button-calm',
+          type: 'button-calm gradient',
           onTap: function() { verifyUser(userId, $scope.data.pin) }
         }
       ]
