@@ -12,11 +12,11 @@
 
     <div class="list" style="height:100%">
       <ion-item auto-list-divider
+        href="#/tabs/event/{{ event.id }}"
         auto-list-divider-value="{{ event.date | date:'mediumDate' }}"
         auto-list-divider-function="dividerFunction"
         auto-list-divider-class="events"
-        ng-repeat="event in events.events"
-        ng-click="showDetails(event)">
+        ng-repeat="event in events.events">
         <h2>{{ event.description }}</h2>
           <p>{{ event.date | date:'shortTime' }}</p>
       </ion-item>

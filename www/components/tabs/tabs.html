@@ -1,0 +1,36 @@
+<ion-view view-title="Halfway">
+  <ion-nav-bar class="bar-calm">
+    <ion-nav-back-button>
+    </ion-nav-back-button>
+    <ion-nav-buttons side="right">
+      <div class="button button-clear" ng-click="settings.show()">
+        <span class="icon ion-gear-a"></span>
+      </div>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+  <ion-content scroll="false">
+    <ion-tabs class="tabs-calm tabs-icon-top">
+      <ion-tab
+        title="Home"
+        href="#/tabs/halfway"
+        icon-on="ion-ios-filing"
+        icon-off="ion-ios-filing-outline">
+        <ion-nav-view name="halfway-tab"></ion-nav-view>
+      </ion-tab>
+
+      <ion-tab
+        title="About"
+        href="#/tabs/events"
+        icon-on="ion-ios-clock"
+        icon-off="ion-ios-clock-outline">
+        <ion-nav-view name="events-tab"></ion-nav-view>
+      </ion-tab>
+    </ion-tabs>
+</ion-view>
+
+<script id="settings.html" type="text/ng-template">
+  <div class="modal">
+    <div ng-include="'components/settings/settings.html'"></div>
+  </div>
+</script>
+

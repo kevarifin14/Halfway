@@ -13,7 +13,6 @@ angular.module('halfway_controller', [])
     $cordovaGeolocation,
     $ionicHistory,
     $ionicLoading,
-    $ionicModal,
     $ionicPlatform,
     $ionicPopup,
     $ionicSideMenuDelegate,
@@ -25,14 +24,6 @@ angular.module('halfway_controller', [])
     $scope.friends = [];
     $scope.invitedFriends = [];
     $scope.phoneNumbers = {};
-
-
-    $ionicModal.fromTemplateUrl('settings.html', {
-      scope: $scope,
-      animation: 'slide-in-up'
-    }).then(function(modal) {
-      $scope.settings = modal;
-    });
 
     var posOptions = { timeout: 10000, enableHighAccuracy: true };
     $cordovaGeolocation

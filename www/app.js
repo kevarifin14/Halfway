@@ -27,9 +27,9 @@ angular.module(
     'login_controller',
     'login_service',
     'logout_service',
-    'main_controller',
     'settings_controller',
     'signup_service',
+    'tabs_controller',
     'user_service',
     'verification_service',
     'users_service',
@@ -70,56 +70,48 @@ angular.module(
   // Each state's controller can be found in controllers.js
   $stateProvider
 
-  .state('app', {
-    url: '/app',
-    abstract: true,
-    templateUrl: 'components/shared/content.html',
-    controller: 'MainCtrl'
-  })
-
-  .state('app.entry', {
+  .state('entry', {
     url: '/entry',
-    views: {
-      'content': {
-        templateUrl: 'components/entry/entry.html',
-        controller: 'EntryCtrl'
-      }
-    }
+    templateUrl: 'components/entry/entry.html',
+    controller: 'EntryCtrl'
   })
 
-  .state('app.halfway', {
+  .state('tabs', {
+    url: '/tabs',
+    abstract: true,
+    templateUrl: 'components/tabs/tabs.html',
+    controller: 'TabsCtrl'
+  })
+
+  .state('tabs.halfway', {
     url: '/halfway',
     views: {
-      'content': {
-        templateUrl: 'components/shared/tabs.html',
+      'halfway-tab': {
+        templateUrl: 'components/halfway/halfway.html',
         controller: 'HalfwayCtrl'
       }
     }
   })
 
-  .state('app.event', {
-    url: '/event/:eventId',
-    resolve: {
-      event: function(Event, $stateParams) {
-        return Event.get({ id: $stateParams.eventId })
-          .$promise.then(function(event) {
-            return event;
-          });
-      },
-      invitations: function(Invitations, $stateParams) {
-        return Invitations.query({ event_id: $stateParams.eventId })
-          .$promise.then(function(invitations) {
-            return invitations;
-          });
-      }
-    },
+  .state('tabs.events', {
+    url: '/events',
     views: {
-      'content': {
+      'events-tab': {
+        templateUrl: 'components/events/events.html',
+        controller: 'EventsCtrl'
+      }
+    }
+  })
+
+  .state('tabs.event', {
+    url: '/event/:eventId',
+    views: {
+      'events-tab': {
         templateUrl: 'components/events/event.html',
         controller: 'EventCtrl'
       }
     }
   });
 
-  $urlRouterProvider.otherwise('/app/entry');
+  $urlRouterProvider.otherwise('/entry');
 });

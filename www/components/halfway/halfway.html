@@ -1,6 +1,6 @@
 <ion-view view-title="Halfway">
   <ion-content scroll="false">
-    <ion-scroll direction="y" style="height: 50%">
+    <ion-scroll direction="y" style="height: 60%">
       <div class="list">
         <ion-checkbox
           auto-list-divider
@@ -54,9 +54,11 @@
         <input type="time" keyboard-attach ng-model="data.time">
       </label>
     <div>
-    <div class="list">
-      <div class="bar bar-calm" ng-click="createHalfwayEvent()">
-        <div class="title">Halfway</div>
+    <div class="row">
+      <div class="col col-60 col-offset-20">
+        <button class="button button-block button-calm" ng-click="createHalfwayEvent()">
+          Halfway
+        </button>
       </div>
     </div>
   </ion-content>

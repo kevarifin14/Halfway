@@ -124,7 +124,7 @@ angular.module('entry_controller', [])
              disableBack: true
           });
 
-          $location.path('/app/halfway');
+          $location.path('/tabs/halfway');
           $ionicLoading.hide();
           $ionicPopup.alert({
             title: 'Your phone number has been verified',

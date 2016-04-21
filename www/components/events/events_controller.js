@@ -18,7 +18,7 @@ angular.module('events_controller', ['current_user_service'])
   }
 
   $scope.showDetails = function(event) {
-    $location.path('app/event/' + event.id);
+    $location.path('tabs/event/' + event.id);
   };
 
   $scope.dividerFunction = function(key) {
