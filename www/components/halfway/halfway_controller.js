@@ -17,6 +17,7 @@ angular.module('halfway_controller', [])
     $ionicPopup,
     $ionicSideMenuDelegate,
     $location,
+    $rootScope,
     $scope,
     $timeout
   ) {
@@ -116,6 +117,15 @@ angular.module('halfway_controller', [])
         Friends.create({ user_id: CurrentUser.id() }, { contacts: contacts}).$promise.then(
           function(data) {
             $scope.friends = data.friends;
+
+            currentUserPhoneNumber = CurrentUser.phoneNumber();
+            $rootScope.phonebook = {}
+            $rootScope.phonebook[currentUserPhoneNumber] = 'Me'
+
+            for (var i = 0; i < $scope.friends.length; i++) {
+              friend = $scope.friends[i];
+              $rootScope.phonebook[friend.phone_number] = friend.name
+            }
           },
           function(err) {
             console.log(err)

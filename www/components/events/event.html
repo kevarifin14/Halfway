@@ -34,12 +34,12 @@
     <div class="list">
       <ion-scroll style="height: 200px;">
         <ion-item ng-repeat="friend in event.friends" class="item item-avatar">
-          {{ friend.phone_number }}
+          {{ phonebook[friend.phone_number] }}
           <span class="item-note">{{ message[rsvpBool[friend.id]] }}</span>
         </ion-item>
       </ion-scroll>
     </div>
-
+    {{ phonebook }}
   </ion-content>
 </ion-view>
 

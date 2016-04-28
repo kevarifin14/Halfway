@@ -3,19 +3,19 @@ angular.module('event_controller', [])
 .controller(
   'EventCtrl',
   function(
-    $scope,
-    $stateParams,
-    Event,
     CurrentUser,
-    $ionicHistory,
+    Event,
     Invitations,
     Invitation,
-    $ionicPopup,
     $ionicLoading,
-    $cordovaGeolocation
+    $ionicPopup,
+    $rootScope,
+    $scope,
+    $stateParams
   ) {
   $ionicLoading.show();
   $scope.message = { true: 'Going', false: 'Invited' };
+  $scope.phonebook = $rootScope.phonebook;
 
   Event.get({ id: $stateParams.eventId }).$promise.then(function(data) {
     $scope.event = data.event;
