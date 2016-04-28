@@ -14,6 +14,7 @@ angular.module('event_controller', [])
     $ionicLoading,
     $cordovaGeolocation
   ) {
+  $ionicLoading.show();
   $scope.message = { true: 'Going', false: 'Invited' };
 
   Event.get({ id: $stateParams.eventId }).$promise.then(function(data) {
@@ -25,46 +26,32 @@ angular.module('event_controller', [])
 
   Invitations.query({ event_id: $stateParams.eventId }).$promise.then(function(data) {
     $scope.invitations = data.invitations;
-    console.log($scope.invitations)
     for (var i = 0; i < $scope.invitations.length; i++) {
       if ($scope.invitations[i].user_id == CurrentUser.id()) {
-        var currentUserInvitationId = $scope.invitations[i].id;
-      }
-      rsvpBool[$scope.invitations[i].user_id] = $scope.invitations[i].rsvp;
-      if ($scope.invitations[i].rsvp) {
-        rsvpTrueCount += 1;
+        $scope.currentUserInvitationId = $scope.invitations[i].id;
       }
     }
-    $scope.rsvpBool = rsvpBool;
-    $scope.currentUserInvitationId = currentUserInvitationId;
-    $scope.rsvp = rsvpBool[CurrentUser.id()];
-    $scope.rsvpTrueCount = rsvpTrueCount;
-    window.localStorage['currentEventId'] = currentUserInvitationId;
+
+    Invitation.get({ id: $scope.currentUserInvitationId }).$promise.then(function(data) {
+      $scope.invitation = data.invitation;
+      $scope.rsvp = $scope.invitation.rsvp;
+      $ionicLoading.hide();
+    });
   });
 
-
-  $scope.goBack = function() {
-    $ionicHistory.goBack();
-  };
-
-  $scope.changeRsvp = function() {
-    var currentUserId = CurrentUser.id();
-    $scope.rsvp = !$scope.rsvp;
-    rsvpBool[currentUserId] = $scope.rsvp;
-    $scope.result = Invitation.update(
-      { id: currentUserInvitationId,
+  $scope.updateRsvp = function(rsvp) {
+    $ionicLoading.show();
+    Invitation.update(
+      { id: $scope.currentUserInvitationId,
         invitation: {
-          rsvp: $scope.rsvp
+          rsvp: rsvp
         }
       }
-    );
-    Event.get({ id: $stateParams.eventId })
-      .$promise.then(function(event) {
-        $scope.event = event.event;
-      })
-    $ionicPopup.alert({
-      title: 'RSVP changed sucessfully'
-    })
+    ).$promise.then(function(data) {
+      $scope.invitation = data.invitations;
+      $scope.rsvp = $scope.invitation.rsvp;
+      $ionicLoading.hide();
+    });
   }
 
   $scope.doRefresh = function() {

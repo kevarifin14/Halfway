@@ -47,7 +47,7 @@ angular.module('halfway_controller', [])
 
     $scope.createHalfwayEvent = function() {
       var selection = document.getElementById('selectionList');
-      var search_param = selection.options[selection.selectedIndex].text;
+      var search_param = selectionList.options[selection.selectedIndex].text;
 
       if ($scope.data.description) {
         if (!($scope.data.date && $scope.data.time)) {
@@ -76,6 +76,8 @@ angular.module('halfway_controller', [])
           $ionicPopup.alert({
             title: 'Event created :)',
           });
+          $scope.data.data = null;
+          $scope.data.description = null;
         }
       } else {
         $ionicPopup.alert({
@@ -91,21 +93,6 @@ angular.module('halfway_controller', [])
       } else {
         $scope.invitedFriends.push(friend.id);
       }
-    }
-
-    $scope.logout = function() {
-      LogoutService.update({ user_id: CurrentUser.id() })
-      $ionicLoading.show();
-      CurrentUser.clear();
-      $scope.settings.hide();
-      $timeout(function () {
-        window.localStorage.clear();
-        $ionicHistory.clearCache();
-        $ionicHistory.clearHistory();
-        $ionicHistory.nextViewOptions({ disableBack: true, historyRoot: true });
-        $ionicLoading.hide();
-      }, 300);
-      $location.path('/#/entry');
     }
 
     document.addEventListener('deviceready', function() {
@@ -129,7 +116,6 @@ angular.module('halfway_controller', [])
         Friends.create({ user_id: CurrentUser.id() }, { contacts: contacts}).$promise.then(
           function(data) {
             $scope.friends = data.friends;
-            console.log($scope.friends)
           },
           function(err) {
             console.log(err)

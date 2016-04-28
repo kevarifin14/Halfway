@@ -8,6 +8,10 @@ angular.module('invitation_service', ['ionic', 'ngResource'])
       update: {
         method: 'PUT',
         headers: { 'Authorization': window.localStorage['userAccessToken'] }
+      },
+      get: {
+        method: 'GET',
+        headers: { 'Authorization': window.localStorage['userAccessToken'] }
       }
     }
   );

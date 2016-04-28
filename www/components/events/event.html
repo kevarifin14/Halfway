@@ -1,13 +1,36 @@
 <ion-view view-title="{{ event.event.description }}" hide-nav-bar="false">
   <ion-content>
+    <ion-refresher pulling-text="Pull to refresh..." on-refresh="doRefresh()">
+    </ion-refresher>
     <div class="item item-thumbnail-left">
+      <img src="{{ event.image }}">
       <h2>{{ event.meeting_point}}</h2>
         {{ event.address }} <br>
         {{ event.date | date:'short' }}
     </div>
+
+    <div ng-if="rsvp">
+      <div class="button-bar">
+        <button class="button button-test" ng-click="updateRsvp(true)"><i class="icon ion-checkmark-round energized"></i></button>
+        <button class="button button-test" ng-click="updateRsvp(false)"><i class="icon ion-close-round"></i></button>
+        <button class="button button-test" ng-disabled ="true"><i class="icon ion-help"></i></button>
+      </div>
+    </div>
+    <div ng-if="rsvp == false">
+      <div class="button-bar">
+        <button class="button button-test" ng-click="updateRsvp(true)"><i class="icon ion-checkmark-round"></i></button>
+        <button class="button button-test" ng-click="updateRsvp(false)"><i class="icon ion-close-round energized"></i></button>
+        <button class="button button-test" ng-disabled="true"><i class="icon ion-help"></i></button>
+      </div>
+    </div>
+    <div ng-if="rsvp == null">
+      <div class="button-bar">
+        <button class="button button-test" ng-click="updateRsvp(true)"><i class="icon ion-checkmark-round"></i></button>
+        <button class="button button-test" ng-click="updateRsvp(false)"><i class="icon ion-close-round"></i></button>
+        <button class="button button-test"><i class="icon ion-help"></i></button>
+      </div>
+    </div>
     <br>
-    <ion-refresher pulling-text="Pull to refresh..." on-refresh="doRefresh()">
-    </ion-refresher>
     <div class="list">
       <ion-scroll style="height: 200px;">
         <ion-item ng-repeat="friend in event.friends" class="item item-avatar">
@@ -16,9 +39,7 @@
         </ion-item>
       </ion-scroll>
     </div>
-    <ion-toggle ng-model="rsvp" toggle-class="toggle-calm" ng-click="changeRsvp()">
-      Going?
-    </ion-toggle>
+
   </ion-content>
 </ion-view>
 
